@@ -2,6 +2,12 @@ package org.cesg.jsharelinks.models;
 
 import java.io.Serializable;
 
+/**
+ * Representacion de la tabla 'link' en la base de datos.
+ * 
+ * @author kristian
+ * @version 30.03.2012
+ */
 @SuppressWarnings("serial")
 public class Link implements Serializable {
 
