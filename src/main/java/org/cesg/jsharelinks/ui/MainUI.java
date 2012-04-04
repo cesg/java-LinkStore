@@ -127,7 +127,7 @@ public class MainUI implements ActionListener {
         this.btnBorrar.addActionListener(this);
         this.btnBorrar.setBounds(273, 208, 117, 25);
         this.frame.getContentPane().add(this.btnBorrar);
-        // ${component_name}
+        // ${btnAgregar}
         this.btnAgregar = new JButton("Agregar");
         this.btnAgregar.addActionListener(this);
         this.btnAgregar.setBounds(273, 245, 117, 25);
