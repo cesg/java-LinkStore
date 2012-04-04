@@ -49,7 +49,6 @@ public class SimpleUIHanler implements UIHandler {
 
     public void doShowAddLink () {
         new Thread(new AddUI(this)).start();
-
     }
 
 }

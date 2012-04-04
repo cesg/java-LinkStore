@@ -41,22 +41,6 @@ public class MainUI implements ActionListener,Runnable {
     private JButton btnBorrar;
     private JButton btnAgregar;
 
-//    /**
-//     * Inicia una nueva instancia de la ventana.
-//     */
-//    public static final void show () {
-//        EventQueue.invokeLater(new Runnable() {
-//            public void run () {
-//                try {
-//                    MainUI window = new MainUI();
-//                    window.frame.setVisible(true);
-//                } catch ( Exception e ) {
-//                    _logger.error("## ERROR al iniciar la UI.", e);
-//                }
-//            }
-//        });
-//    }
-
     private void llenarTabla () {
 
         List<Link> allLinks = linkManager.selectAllLink();
