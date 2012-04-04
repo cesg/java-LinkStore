@@ -14,4 +14,6 @@ public interface UIHandler {
     void doAgregar(Link link);
     
     void doBorrarLink(Link link);
+    
+    void doShowAddLink();
 }

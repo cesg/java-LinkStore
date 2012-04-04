@@ -1,6 +1,5 @@
 package org.cesg.jsharelinks.ui;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -26,7 +25,7 @@ import org.slf4j.LoggerFactory;
  * @author kristian
  * @version 04.04.2012
  */
-public class MainUI implements ActionListener {
+public class MainUI implements ActionListener,Runnable {
 
     private final static Logger _logger = LoggerFactory.getLogger(MainUI.class);
     private final LinkManager linkManager;
@@ -42,21 +41,21 @@ public class MainUI implements ActionListener {
     private JButton btnBorrar;
     private JButton btnAgregar;
 
-    /**
-     * Inicia una nueva instancia de la ventana.
-     */
-    public static final void show () {
-        EventQueue.invokeLater(new Runnable() {
-            public void run () {
-                try {
-                    MainUI window = new MainUI();
-                    window.frame.setVisible(true);
-                } catch ( Exception e ) {
-                    _logger.error("## ERROR al iniciar la UI.", e);
-                }
-            }
-        });
-    }
+//    /**
+//     * Inicia una nueva instancia de la ventana.
+//     */
+//    public static final void show () {
+//        EventQueue.invokeLater(new Runnable() {
+//            public void run () {
+//                try {
+//                    MainUI window = new MainUI();
+//                    window.frame.setVisible(true);
+//                } catch ( Exception e ) {
+//                    _logger.error("## ERROR al iniciar la UI.", e);
+//                }
+//            }
+//        });
+//    }
 
     private void llenarTabla () {
 
@@ -75,7 +74,8 @@ public class MainUI implements ActionListener {
      * Create the application.
      */
     @SuppressWarnings("serial")
-    public MainUI () {
+    public MainUI (UIHandler handler) {
+        this.handler = handler;
         this.linkManager = new PoolLinkManager();
         this.mod = new DefaultTableModel() {
             @Override
@@ -89,14 +89,15 @@ public class MainUI implements ActionListener {
         mod.addColumn("comentario");
         mod.setColumnCount(3);
 
-        initialize();
-        llenarTabla();
+//        initialize();
+//        llenarTabla();
     }
 
     /**
      * Initialize the contents of the frame.
      */
     private void initialize () {
+        _logger.debug("# Iniciando los componentes.");
         this.frame = new JFrame();
         this.frame.setBounds(100, 100, 450, 322);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -139,10 +140,24 @@ public class MainUI implements ActionListener {
             handler.doBorrarLink(null);
         }
         if (e.getSource() == this.btnAgregar) {
-            handler.doAgregar(null);
+            handler.doShowAddLink();
         }
         if ( e.getSource() == this.btnIr ) {
             handler.doIr("");
         }
+    }
+
+    /**
+     * @wbp.parser.entryPoint
+     */
+    public void run () {
+        try {
+            initialize();
+            this.frame.setVisible(true);
+            llenarTabla();
+        } catch ( Exception e ) {
+            _logger.error("## ERROR al iniciar la UI.",e);
+        } 
+        
     }
 }
