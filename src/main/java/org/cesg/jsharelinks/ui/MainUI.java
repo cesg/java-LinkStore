@@ -20,10 +20,17 @@ import org.cesg.jsharelinks.services.PoolLinkManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * UI principal para el manejo de los links.<br>
+ * Windows Builder 
+ * @author kristian
+ * @version 04.04.2012
+ */
 public class MainUI implements ActionListener {
 
     private final static Logger _logger = LoggerFactory.getLogger(MainUI.class);
     private final LinkManager linkManager;
+    private UIHandler handler = new UIHandler();
 
     private JFrame frame;
     private JMenuBar menuBar;
@@ -55,6 +62,7 @@ public class MainUI implements ActionListener {
         List<Link> allLinks = linkManager.selectAllLink();
         if ( allLinks.size() == 0 )
             return;
+
         for ( Link link : allLinks) {
             Object[] newRow = { link.getId(), link.getUrl(),
                     link.getComentario() };
@@ -121,7 +129,7 @@ public class MainUI implements ActionListener {
 
     public void actionPerformed ( final ActionEvent e) {
         if ( e.getSource() == this.btnIr ) {
-            // do_btnIr_actionPerformed(e);
+            handler.doIr("");
         }
     }
 }
