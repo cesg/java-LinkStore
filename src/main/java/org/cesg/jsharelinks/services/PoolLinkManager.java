@@ -51,6 +51,12 @@ public final class PoolLinkManager implements LinkManager {
         List<Link> allLinks = new ArrayList<Link>();
 
         OpenSession();
+        LinkMapper mapper = this.session.getMapper(LinkMapper.class);
+        try {
+            allLinks = mapper.selectAllLink();
+        } catch ( Exception e ) {
+            _logger.error("##Error al seleccionar todas las filas.", e);
+        }
         return allLinks;
     }
 

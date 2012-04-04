@@ -1,7 +1,11 @@
 package org.cesg.jsharelinks.ui;
 
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -10,36 +14,30 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
+import org.cesg.jsharelinks.models.Link;
+import org.cesg.jsharelinks.services.LinkManager;
+import org.cesg.jsharelinks.services.PoolLinkManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class MainUI {
+public class MainUI implements ActionListener {
 
     private final static Logger _logger = LoggerFactory.getLogger(MainUI.class);
+    private final LinkManager linkManager;
 
     private JFrame frame;
     private JMenuBar menuBar;
     private JMenu mnOpciones;
+    private final DefaultTableModel mod;
     private JTable table;
     private JScrollPane scrollPane;
+    public JButton btnIr;
+    private JButton btnBorrar;
 
-//    /**
-//     * Launch the application.
-//     */
-//    public static void main ( String[] args) {
-//        EventQueue.invokeLater(new Runnable() {
-//            public void run () {
-//                try {
-//                    MainUI window = new MainUI();
-//                    window.frame.setVisible(true);
-//                } catch ( Exception e ) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        });
-//    }
-
-    public final void show(){
+    /**
+     * Inicia una nueva instancia de la ventana.
+     */
+    public static final void show () {
         EventQueue.invokeLater(new Runnable() {
             public void run () {
                 try {
@@ -51,12 +49,39 @@ public class MainUI {
             }
         });
     }
-    
+
+    private void llenarTabla () {
+
+        List<Link> allLinks = linkManager.selectAllLink();
+        if ( allLinks.size() == 0 )
+            return;
+        for ( Link link : allLinks) {
+            Object[] newRow = { link.getId(), link.getUrl(),
+                    link.getComentario() };
+            mod.addRow(newRow);
+        }
+    }
+
     /**
      * Create the application.
      */
-    private MainUI () {
+    @SuppressWarnings("serial")
+    public MainUI () {
+        this.linkManager = new PoolLinkManager();
+        this.mod = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable ( int row , int column) {
+                return Boolean.FALSE;
+            }
+        };
+
+        mod.addColumn("id");
+        mod.addColumn("url");
+        mod.addColumn("comentario");
+        mod.setColumnCount(3);
+
         initialize();
+        llenarTabla();
     }
 
     /**
@@ -67,42 +92,36 @@ public class MainUI {
         this.frame.setBounds(100, 100, 450, 300);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.getContentPane().setLayout(null);
-        
+
         this.menuBar = new JMenuBar();
         this.menuBar.setBounds(0, 0, 446, 21);
         this.frame.getContentPane().add(this.menuBar);
-        
+
         this.mnOpciones = new JMenu("Opciones");
         this.menuBar.add(this.mnOpciones);
-        
+
         this.scrollPane = new JScrollPane();
-        this.scrollPane.setBounds(31, 53, 380, 127);
+        this.scrollPane.setBounds(30, 47, 404, 132);
         this.frame.getContentPane().add(this.scrollPane);
 
         this.table = new JTable();
-        this.scrollPane.setViewportView(this.table);
         this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        this.table.setModel(new DefaultTableModel(
-            new Object[][] {
-            },
-            new String[] {
-                "id", "url", "comentario"
-            }
-        ) {
-            Class[] columnTypes = new Class[] {
-                Integer.class, String.class, String.class
-            };
-            @Override
-            public Class getColumnClass(int columnIndex) {
-                return columnTypes[columnIndex];
-            }
-            boolean[] columnEditables = new boolean[] {
-                false, false, false
-            };
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return columnEditables[column];
-            }
-        });
+        this.scrollPane.setViewportView(this.table);
+        this.table.setModel(mod);
+
+        this.btnIr = new JButton("IR");
+        this.btnIr.addActionListener(this);
+        this.btnIr.setBounds(30, 208, 87, 25);
+        this.frame.getContentPane().add(this.btnIr);
+
+        this.btnBorrar = new JButton("BORRAR");
+        this.btnBorrar.setBounds(273, 208, 117, 25);
+        this.frame.getContentPane().add(this.btnBorrar);
+    }
+
+    public void actionPerformed ( final ActionEvent e) {
+        if ( e.getSource() == this.btnIr ) {
+            // do_btnIr_actionPerformed(e);
+        }
     }
 }
