@@ -30,7 +30,7 @@ public class MainUI implements ActionListener {
 
     private final static Logger _logger = LoggerFactory.getLogger(MainUI.class);
     private final LinkManager linkManager;
-    private UIHandler handler = new UIHandler();
+    private UIHandler handler;
 
     private JFrame frame;
     private JMenuBar menuBar;
@@ -40,6 +40,7 @@ public class MainUI implements ActionListener {
     private JScrollPane scrollPane;
     public JButton btnIr;
     private JButton btnBorrar;
+    private JButton btnAgregar;
 
     /**
      * Inicia una nueva instancia de la ventana.
@@ -97,7 +98,7 @@ public class MainUI implements ActionListener {
      */
     private void initialize () {
         this.frame = new JFrame();
-        this.frame.setBounds(100, 100, 450, 300);
+        this.frame.setBounds(100, 100, 450, 322);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.getContentPane().setLayout(null);
 
@@ -123,11 +124,23 @@ public class MainUI implements ActionListener {
         this.frame.getContentPane().add(this.btnIr);
 
         this.btnBorrar = new JButton("BORRAR");
+        this.btnBorrar.addActionListener(this);
         this.btnBorrar.setBounds(273, 208, 117, 25);
         this.frame.getContentPane().add(this.btnBorrar);
+        // ${component_name}
+        this.btnAgregar = new JButton("Agregar");
+        this.btnAgregar.addActionListener(this);
+        this.btnAgregar.setBounds(273, 245, 117, 25);
+        this.frame.getContentPane().add(this.btnAgregar);
     }
 
     public void actionPerformed ( final ActionEvent e) {
+        if (e.getSource() == this.btnBorrar) {
+            handler.doBorrarLink(null);
+        }
+        if (e.getSource() == this.btnAgregar) {
+            handler.doAgregar(null);
+        }
         if ( e.getSource() == this.btnIr ) {
             handler.doIr("");
         }
