@@ -56,6 +56,8 @@ public final class PoolLinkManager implements LinkManager {
             allLinks = mapper.selectAllLink();
         } catch ( Exception e ) {
             _logger.error("##Error al seleccionar todas las filas.", e);
+        }finally {
+            this.session.close();
         }
         return allLinks;
     }
@@ -92,6 +94,14 @@ public final class PoolLinkManager implements LinkManager {
             return filasAfectadas;
 
         OpenSession();
+        LinkMapper mapper = this.session.getMapper(LinkMapper.class);
+        try {
+            filasAfectadas = mapper.deleteLink(link);
+        } catch ( Exception e ) {
+            _logger.error("Error al eliminar el link.",e);
+        }finally {
+            this.session.close();
+        }
         return filasAfectadas;
     }
 

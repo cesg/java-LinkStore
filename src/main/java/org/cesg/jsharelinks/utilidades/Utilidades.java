@@ -1,0 +1,41 @@
+/**
+ * 
+ */
+package org.cesg.jsharelinks.utilidades;
+
+import java.awt.Toolkit;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.Transferable;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * @author kristian
+ * 
+ */
+public final class Utilidades {
+
+    private static final Logger _logger = LoggerFactory
+            .getLogger(Utilidades.class);
+    public static final String CADENA_VACIA = "";
+
+    public static String tryGetTextFromClipBoard () {
+        String resultado = CADENA_VACIA;
+        Transferable t = Toolkit.getDefaultToolkit().getSystemClipboard()
+                .getContents(null);
+        try {
+            if ( t != null && t.isDataFlavorSupported(DataFlavor.stringFlavor) ) {
+                String text = ( String ) t
+                        .getTransferData(DataFlavor.stringFlavor);
+
+                resultado = text.trim();
+            }
+        } catch ( Exception e ) {
+            _logger.error(
+                    "# Error al intentar obtener string desde el clipboard. ",
+                    e);
+        }
+        return resultado;
+    }
+}

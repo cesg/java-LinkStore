@@ -61,13 +61,14 @@ public class Link implements Serializable {
     @Override
     public String toString () {
         StringBuilder builder = new StringBuilder();
-        builder.append("Link [id=");
+//        builder.append("Link [id=");
         builder.append(id);
-        builder.append(", url=");
-        builder.append(url);
-        builder.append(", comentario=");
+//        builder.append(", url=");
+//        builder.append(url);
+//        builder.append(", comentario=");
+        builder.append(" - ");
         builder.append(comentario);
-        builder.append("]");
+//        builder.append("]");
         return builder.toString();
     }
 

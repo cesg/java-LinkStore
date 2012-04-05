@@ -4,77 +4,69 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
-import javax.swing.table.DefaultTableModel;
 
 import org.cesg.jsharelinks.models.Link;
 import org.cesg.jsharelinks.services.LinkManager;
 import org.cesg.jsharelinks.services.PoolLinkManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
+import javax.swing.JScrollPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 /**
  * UI principal para el manejo de los links.<br>
- * Windows Builder 
+ * Windows Builder
+ * 
  * @author kristian
- * @version 04.04.2012
+ * @version 05.04.2012
  */
-public class MainUI implements ActionListener,Runnable {
+public class MainUI implements ActionListener , Runnable , MouseListener ,
+        ListSelectionListener {
 
     private final static Logger _logger = LoggerFactory.getLogger(MainUI.class);
     private final LinkManager linkManager;
     private UIHandler handler;
+    private DefaultListModel<Link> listModel;
 
     private JFrame frame;
     private JMenuBar menuBar;
     private JMenu mnOpciones;
-    private final DefaultTableModel mod;
-    private JTable table;
-    private JScrollPane scrollPane;
     public JButton btnIr;
     private JButton btnBorrar;
     private JButton btnAgregar;
-
-    private void llenarTabla () {
-
-        List<Link> allLinks = linkManager.selectAllLink();
-        if ( allLinks.size() == 0 )
-            return;
-
-        for ( Link link : allLinks) {
-            Object[] newRow = { link.getId(), link.getUrl(),
-                    link.getComentario() };
-            mod.addRow(newRow);
-        }
-    }
+    private JList<Link> list;
+    private JTextArea txtrUrl;
+    private JScrollPane scrollPane;
 
     /**
      * Create the application.
      */
-    @SuppressWarnings("serial")
-    public MainUI (UIHandler handler) {
+
+    public MainUI ( UIHandler handler) {
         this.handler = handler;
         this.linkManager = new PoolLinkManager();
-        this.mod = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable ( int row , int column) {
-                return Boolean.FALSE;
-            }
-        };
+        this.listModel = new DefaultListModel<Link>();
 
-        mod.addColumn("id");
-        mod.addColumn("url");
-        mod.addColumn("comentario");
-        mod.setColumnCount(3);
+    }
 
-//        initialize();
-//        llenarTabla();
+    private void llenarLista () {
+        List<Link> listaLinks = this.linkManager.selectAllLink();
+        for ( Link link : listaLinks) {
+            this.listModel.addElement(link);
+        }
+        if ( listModel.size() > 0 )
+            list.setSelectedIndex(0);
     }
 
     /**
@@ -83,31 +75,22 @@ public class MainUI implements ActionListener,Runnable {
     private void initialize () {
         _logger.debug("# Iniciando los componentes.");
         this.frame = new JFrame();
-        this.frame.setBounds(100, 100, 450, 322);
+        this.frame.setBounds(100, 100, 627, 309);
         this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frame.getContentPane().setLayout(null);
-
+        // ${menuBar}
         this.menuBar = new JMenuBar();
         this.menuBar.setBounds(0, 0, 446, 21);
         this.frame.getContentPane().add(this.menuBar);
-
+        // ${mnOpciones}
         this.mnOpciones = new JMenu("Opciones");
         this.menuBar.add(this.mnOpciones);
-
-        this.scrollPane = new JScrollPane();
-        this.scrollPane.setBounds(30, 47, 404, 132);
-        this.frame.getContentPane().add(this.scrollPane);
-
-        this.table = new JTable();
-        this.table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        this.scrollPane.setViewportView(this.table);
-        this.table.setModel(mod);
-
+        // ${btnIr}
         this.btnIr = new JButton("IR");
         this.btnIr.addActionListener(this);
         this.btnIr.setBounds(30, 208, 87, 25);
         this.frame.getContentPane().add(this.btnIr);
-
+        // ${btnBorrar}
         this.btnBorrar = new JButton("BORRAR");
         this.btnBorrar.addActionListener(this);
         this.btnBorrar.setBounds(273, 208, 117, 25);
@@ -117,17 +100,43 @@ public class MainUI implements ActionListener,Runnable {
         this.btnAgregar.addActionListener(this);
         this.btnAgregar.setBounds(273, 245, 117, 25);
         this.frame.getContentPane().add(this.btnAgregar);
+        // ${component_name}
+        this.scrollPane = new JScrollPane();
+        this.scrollPane.setBounds(32, 58, 136, 138);
+        this.frame.getContentPane().add(this.scrollPane);
+        // ${list}
+        this.list = new JList<Link>();
+        this.scrollPane.setViewportView(this.list);
+        this.list.addMouseListener(this);
+        this.list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        this.list.addListSelectionListener(this);
+        this.list.setModel(listModel);
+        // ${txtrUrl}
+        this.txtrUrl = new JTextArea();
+        this.txtrUrl.setText("url");
+        this.txtrUrl.setBounds(197, 59, 414, 73);
+        this.frame.getContentPane().add(this.txtrUrl);
     }
 
     public void actionPerformed ( final ActionEvent e) {
-        if (e.getSource() == this.btnBorrar) {
-            handler.doBorrarLink(null);
+        if ( e.getSource() == this.btnBorrar ) {
+            if ( list.getModel().getSize() > 0 )
+                handler.doBorrarLink(list.getSelectedValue());
         }
-        if (e.getSource() == this.btnAgregar) {
+        if ( e.getSource() == this.btnAgregar ) {
             handler.doShowAddLink();
         }
         if ( e.getSource() == this.btnIr ) {
-            handler.doIr("");
+            if(list.getModel().getSize() > 0){
+                handler.doIr(list.getSelectedValue().getUrl());
+            llenarLista();    
+            }
+        }
+    }
+
+    public void valueChanged ( final ListSelectionEvent e) {
+        if ( e.getSource() == this.list ) {
+            txtrUrl.setText(list.getSelectedValue().getUrl());
         }
     }
 
@@ -138,10 +147,23 @@ public class MainUI implements ActionListener,Runnable {
         try {
             initialize();
             this.frame.setVisible(true);
-            llenarTabla();
+            llenarLista();
         } catch ( Exception e ) {
-            _logger.error("## ERROR al iniciar la UI.",e);
-        } 
-        
+            _logger.error("## ERROR al iniciar la UI.", e);
+        }
+
     }
+
+    // REGION :: Metodos no usados.
+    public void mouseEntered ( final MouseEvent e) {}
+
+    public void mouseExited ( final MouseEvent e) {}
+
+    public void mouseClicked ( final MouseEvent e) {}
+
+    public void mousePressed ( final MouseEvent e) {}
+
+    public void mouseReleased ( final MouseEvent e) {}
+    // END REGION :: Metodos no usados.
+
 }
