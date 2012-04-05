@@ -48,4 +48,8 @@ public class SimpleUIHanler implements UIHandler {
         new Thread(new AddUI(this)).start();
     }
 
+    public void doBorrarLink ( Integer id) {
+        linkManager.deleteLinkById(id);        
+    }
+
 }

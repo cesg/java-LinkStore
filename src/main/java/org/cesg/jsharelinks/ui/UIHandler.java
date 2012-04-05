@@ -33,6 +33,14 @@ public interface UIHandler {
     void doBorrarLink ( Link link);
 
     /**
+     * Intenta borrar un link por su id.
+     * 
+     * @param id
+     *            'id' del link.
+     */
+    void doBorrarLink ( Integer id);
+
+    /**
      * Abre una ventana nueva para insertar <br>
      * un link.
      */
