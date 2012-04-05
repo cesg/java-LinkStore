@@ -25,11 +25,6 @@ public class SimpleUIHanler implements UIHandler {
     private static final Logger _logger = LoggerFactory
             .getLogger(SimpleUIHanler.class);
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.cesg.jsharelinks.ui.UIHandler#doIr(java.lang.String)
-     */
     public void doIr ( String url) {
         try {
             Desktop.getDesktop().browse(new java.net.URI(url));
@@ -40,25 +35,11 @@ public class SimpleUIHanler implements UIHandler {
         }
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.cesg.jsharelinks.ui.UIHandler#doAgregar(org.cesg.jsharelinks.models
-     * .Link)
-     */
     public void doAgregar ( final Link link) {
         if ( link != null )
             linkManager.insertLink(link);
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.cesg.jsharelinks.ui.UIHandler#doBorrarLink(org.cesg.jsharelinks.models
-     * .Link)
-     */
     public void doBorrarLink ( final Link link) {
         linkManager.deleteLink(link);
     }
