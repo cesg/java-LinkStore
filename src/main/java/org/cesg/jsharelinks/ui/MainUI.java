@@ -2,27 +2,25 @@ package org.cesg.jsharelinks.ui;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JList;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import org.cesg.jsharelinks.models.Link;
 import org.cesg.jsharelinks.services.LinkManager;
 import org.cesg.jsharelinks.services.PoolLinkManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseEvent;
-import javax.swing.JScrollPane;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 /**
  * UI principal para el manejo de los links.<br>
@@ -39,9 +37,7 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
     private UIHandler handler;
     private DefaultListModel<Link> listModel;
 
-    private JFrame frame;
-    private JMenuBar menuBar;
-    private JMenu mnOpciones;
+    private JFrame frmSharedLinks;
     public JButton btnIr;
     private JButton btnBorrar;
     private JButton btnAgregar;
@@ -74,36 +70,31 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
      */
     private void initialize () {
         _logger.debug("# Iniciando los componentes.");
-        this.frame = new JFrame();
-        this.frame.setBounds(100, 100, 627, 309);
-        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.frame.getContentPane().setLayout(null);
-        // ${menuBar}
-        this.menuBar = new JMenuBar();
-        this.menuBar.setBounds(0, 0, 446, 21);
-        this.frame.getContentPane().add(this.menuBar);
-        // ${mnOpciones}
-        this.mnOpciones = new JMenu("Opciones");
-        this.menuBar.add(this.mnOpciones);
+        this.frmSharedLinks = new JFrame();
+        this.frmSharedLinks.setResizable(false);
+        this.frmSharedLinks.setTitle("SHARED LINKS");
+        this.frmSharedLinks.setBounds(100, 100, 627, 391);
+        this.frmSharedLinks.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.frmSharedLinks.getContentPane().setLayout(null);
         // ${btnIr}
         this.btnIr = new JButton("IR");
         this.btnIr.addActionListener(this);
-        this.btnIr.setBounds(30, 208, 87, 25);
-        this.frame.getContentPane().add(this.btnIr);
+        this.btnIr.setBounds(524, 314, 87, 25);
+        this.frmSharedLinks.getContentPane().add(this.btnIr);
         // ${btnBorrar}
-        this.btnBorrar = new JButton("BORRAR");
+        this.btnBorrar = new JButton("Borrar");
         this.btnBorrar.addActionListener(this);
-        this.btnBorrar.setBounds(273, 208, 117, 25);
-        this.frame.getContentPane().add(this.btnBorrar);
+        this.btnBorrar.setBounds(32, 328, 117, 25);
+        this.frmSharedLinks.getContentPane().add(this.btnBorrar);
         // ${btnAgregar}
         this.btnAgregar = new JButton("Agregar");
         this.btnAgregar.addActionListener(this);
-        this.btnAgregar.setBounds(273, 245, 117, 25);
-        this.frame.getContentPane().add(this.btnAgregar);
+        this.btnAgregar.setBounds(32, 299, 117, 25);
+        this.frmSharedLinks.getContentPane().add(this.btnAgregar);
         // ${component_name}
         this.scrollPane = new JScrollPane();
-        this.scrollPane.setBounds(32, 58, 136, 138);
-        this.frame.getContentPane().add(this.scrollPane);
+        this.scrollPane.setBounds(32, 58, 189, 228);
+        this.frmSharedLinks.getContentPane().add(this.scrollPane);
         // ${list}
         this.list = new JList<Link>();
         this.scrollPane.setViewportView(this.list);
@@ -114,14 +105,14 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
         // ${txtrUrl}
         this.txtrUrl = new JTextArea();
         this.txtrUrl.setText("url");
-        this.txtrUrl.setBounds(197, 59, 414, 73);
-        this.frame.getContentPane().add(this.txtrUrl);
+        this.txtrUrl.setBounds(233, 59, 378, 122);
+        this.frmSharedLinks.getContentPane().add(this.txtrUrl);
     }
 
     public void actionPerformed ( final ActionEvent e) {
         if ( e.getSource() == this.btnBorrar ) {
             if ( list.getModel().getSize() > 0 )
-                handler.doBorrarLink(list.getSelectedValue());
+                handler.doBorrarLink(list.getSelectedValue().getId());
         }
         if ( e.getSource() == this.btnAgregar ) {
             handler.doShowAddLink();
@@ -146,7 +137,7 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
     public void run () {
         try {
             initialize();
-            this.frame.setVisible(true);
+            this.frmSharedLinks.setVisible(true);
             llenarLista();
         } catch ( Exception e ) {
             _logger.error("## ERROR al iniciar la UI.", e);
