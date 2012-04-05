@@ -111,8 +111,10 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
 
     public void actionPerformed ( final ActionEvent e) {
         if ( e.getSource() == this.btnBorrar ) {
-            if ( list.getModel().getSize() > 0 )
+            if ( list.getModel().getSize() > 0 ) {
                 handler.doBorrarLink(list.getSelectedValue().getId());
+                llenarLista();
+            }
         }
         if ( e.getSource() == this.btnAgregar ) {
             handler.doShowAddLink();
