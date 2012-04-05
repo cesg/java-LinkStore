@@ -26,4 +26,9 @@ public final class StaticLinkManager implements LinkManager {
         return null;
     }
 
+    public Integer deleteLinkById ( Integer id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
 }

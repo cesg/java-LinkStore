@@ -18,7 +18,8 @@ public interface LinkMapper {
     final String SELECT_LINK_BY_ID = "SELECT * FROM link WHERE id = #{id}";
     final String SELECT_LINK_ALL = "SELECT * FROM link";
     final String INSERT_LINK = "INSERT INTO link (url,comentario) VALUES (#{url},#{comentario})";
-    final String DELETE_LINK = "DELETE FROM link WHERE (id=#{},url=#{},comentario=#{})";
+    final String DELETE_LINK = "DELETE FROM link WHERE (id=#{id},url=#{url},comentario=#{comentario})";
+    final String DELETE_LINK_BY_ID = "DELETE FROM link WHERE (id=#{id})";
 
     /**
      * Seleciona un link de la base de datos segun la id.<br>
@@ -40,4 +41,7 @@ public interface LinkMapper {
 
     @Delete(DELETE_LINK)
     Integer deleteLink ( Link link) throws Exception;
+
+    @Delete(DELETE_LINK_BY_ID)
+    Integer deleteLinkById ( Integer id) throws Exception;
 }

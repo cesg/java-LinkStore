@@ -22,11 +22,6 @@ public final class PoolLinkManager implements LinkManager {
     private SqlSession session;
     private final Logger _logger = LoggerFactory.getLogger(getClass());
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.cesg.jshare.services.LinkManager#selectLink(java.lang.Integer)
-     */
     public Link selectLink ( Integer id) {
 
         Link link = null;
@@ -46,11 +41,6 @@ public final class PoolLinkManager implements LinkManager {
         return link;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see org.cesg.jshare.services.LinkManager#selectAllLink()
-     */
     public List<Link> selectAllLink () {
         List<Link> allLinks = new ArrayList<Link>();
 
@@ -66,13 +56,6 @@ public final class PoolLinkManager implements LinkManager {
         return allLinks;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.cesg.jshare.services.LinkManager#insertLink(org.cesg.jshare.models
-     * .Link)
-     */
     public Integer insertLink ( Link link) {
 
         Integer filasAfectadas = null;
@@ -92,13 +75,6 @@ public final class PoolLinkManager implements LinkManager {
         return filasAfectadas;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * org.cesg.jshare.services.LinkManager#deleteLink(org.cesg.jshare.models
-     * .Link)
-     */
     public Integer deleteLink ( Link link) {
 
         Integer filasAfectadas = null;
@@ -117,7 +93,25 @@ public final class PoolLinkManager implements LinkManager {
         return filasAfectadas;
     }
 
+    public Integer deleteLinkById ( Integer id) {
+        Integer filasAfectadas = null;
+
+        if ( id == null )
+            return filasAfectadas;
+        OpenSession();
+        LinkMapper mapper = this.session.getMapper(LinkMapper.class);
+        try {
+            filasAfectadas = mapper.deleteLinkById(id);
+        } catch ( Exception e ) {
+            _logger.error("Error al eliminar el link.", e);
+        } finally {
+            this.session.close();
+        }
+        return filasAfectadas;
+    }
+
     private final void OpenSession () {
         this.session = ConnectioFactory.getSession().openSession();
     }
+
 }

@@ -47,4 +47,14 @@ public interface LinkManager {
      *         null si no modifico ninguna.
      */
     Integer deleteLink ( final Link link);
+
+    /**
+     * Borra un link.
+     * 
+     * @param id
+     *            'id' del link.
+     * @return Integer con el numero de filas afectadas, <br>
+     *         null si no modifico ninguna.
+     */
+    Integer deleteLinkById ( Integer id);
 }
