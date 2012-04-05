@@ -85,6 +85,7 @@ public final class PoolLinkManager implements LinkManager {
         LinkMapper mapper = this.session.getMapper(LinkMapper.class);
         try {
             filasAfectadas = mapper.deleteLink(link);
+            this.session.commit();
         } catch ( Exception e ) {
             _logger.error("Error al eliminar el link.", e);
         } finally {
@@ -102,6 +103,7 @@ public final class PoolLinkManager implements LinkManager {
         LinkMapper mapper = this.session.getMapper(LinkMapper.class);
         try {
             filasAfectadas = mapper.deleteLinkById(id);
+            this.session.commit();
         } catch ( Exception e ) {
             _logger.error("Error al eliminar el link.", e);
         } finally {
