@@ -34,15 +34,17 @@ public class JShareLinksInicio {
             else
                 UIManager.setLookAndFeel(WIN_LAF);
         } catch ( ClassNotFoundException e ) {
-            _logger.error("", e);
+            _logger.error("# LookAndFeel no encontrada.", e);
         } catch ( InstantiationException e ) {
-            _logger.error("", e);
+            _logger.error("# LookAndFeel no se puede iniciar una instancia.", e);
         } catch ( IllegalAccessException e ) {
-            _logger.error("", e);
+            _logger.error("# LookAndFeel no se puede acceder.", e);
         } catch ( UnsupportedLookAndFeelException e ) {
-            _logger.error("", e);
+            _logger.error("# LookAndFeel no soportada.", e);
+        } finally {
+            new Thread(new MainUI(uiHandler)).start();
         }
-        new Thread(new MainUI(uiHandler)).start();
+
     }
 
     private static Boolean estaEnLinux () {
