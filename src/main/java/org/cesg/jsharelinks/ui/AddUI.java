@@ -81,9 +81,9 @@ public class AddUI implements Runnable , ActionListener , MouseListener {
     }
 
     public void actionPerformed ( final ActionEvent e) {
-        if (e.getSource() == this.btnPegar) {
+        if ( e.getSource() == this.btnPegar ) {
             String portaPapeles = tryGetTextFromClipBoard();
-            if(portaPapeles.length() > 0)
+            if ( portaPapeles.length() > 0 )
                 this.txtrUrl.setText(portaPapeles);
         }
         if ( e.getSource() == this.btnAgregar ) {
@@ -97,7 +97,6 @@ public class AddUI implements Runnable , ActionListener , MouseListener {
             this.txtComentario.setText(CADENA_VACIA);
         }
     }
-
 
     private final Boolean verificador ( String comentario , String url) {
         if ( comentario.length() > 0 && url.length() > 0 ) {
@@ -117,20 +116,24 @@ public class AddUI implements Runnable , ActionListener , MouseListener {
             link = new Link();
             link.setComentario(comentario);
             link.setUrl(url);
-            _logger.debug("Insertando un nuevo link: {}",link.toString());
+            _logger.debug("Insertando un nuevo link: {}", link.toString());
         }
         return link;
 
     }
-    
-// ## REGION :: METODOS NO USADOS.
-    public void mouseClicked ( MouseEvent e) {}
 
-    public void mousePressed ( MouseEvent e) {}
+    // ## REGION :: METODOS NO USADOS.
+    public void mouseClicked ( MouseEvent e) {
+    }
 
-    public void mouseReleased ( MouseEvent e) {}
-    
-    public void mouseExited ( final MouseEvent e) {}
-// ## END REGION :: METODOS NO USADOS.
-    
+    public void mousePressed ( MouseEvent e) {
+    }
+
+    public void mouseReleased ( MouseEvent e) {
+    }
+
+    public void mouseExited ( final MouseEvent e) {
+    }
+    // ## END REGION :: METODOS NO USADOS.
+
 }

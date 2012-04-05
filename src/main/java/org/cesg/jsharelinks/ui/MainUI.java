@@ -127,9 +127,9 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
             handler.doShowAddLink();
         }
         if ( e.getSource() == this.btnIr ) {
-            if(list.getModel().getSize() > 0){
+            if ( list.getModel().getSize() > 0 ) {
                 handler.doIr(list.getSelectedValue().getUrl());
-            llenarLista();    
+                llenarLista();
             }
         }
     }
@@ -155,15 +155,20 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
     }
 
     // REGION :: Metodos no usados.
-    public void mouseEntered ( final MouseEvent e) {}
+    public void mouseEntered ( final MouseEvent e) {
+    }
 
-    public void mouseExited ( final MouseEvent e) {}
+    public void mouseExited ( final MouseEvent e) {
+    }
 
-    public void mouseClicked ( final MouseEvent e) {}
+    public void mouseClicked ( final MouseEvent e) {
+    }
 
-    public void mousePressed ( final MouseEvent e) {}
+    public void mousePressed ( final MouseEvent e) {
+    }
 
-    public void mouseReleased ( final MouseEvent e) {}
+    public void mouseReleased ( final MouseEvent e) {
+    }
     // END REGION :: Metodos no usados.
 
 }

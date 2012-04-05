@@ -15,14 +15,16 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @author kristian
- *
+ * 
  */
 public final class PoolLinkManager implements LinkManager {
 
     private SqlSession session;
     private final Logger _logger = LoggerFactory.getLogger(getClass());
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.cesg.jshare.services.LinkManager#selectLink(java.lang.Integer)
      */
     public Link selectLink ( Integer id) {
@@ -44,7 +46,9 @@ public final class PoolLinkManager implements LinkManager {
         return link;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see org.cesg.jshare.services.LinkManager#selectAllLink()
      */
     public List<Link> selectAllLink () {
@@ -56,14 +60,18 @@ public final class PoolLinkManager implements LinkManager {
             allLinks = mapper.selectAllLink();
         } catch ( Exception e ) {
             _logger.error("##Error al seleccionar todas las filas.", e);
-        }finally {
+        } finally {
             this.session.close();
         }
         return allLinks;
     }
 
-    /* (non-Javadoc)
-     * @see org.cesg.jshare.services.LinkManager#insertLink(org.cesg.jshare.models.Link)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.cesg.jshare.services.LinkManager#insertLink(org.cesg.jshare.models
+     * .Link)
      */
     public Integer insertLink ( Link link) {
 
@@ -84,8 +92,12 @@ public final class PoolLinkManager implements LinkManager {
         return filasAfectadas;
     }
 
-    /* (non-Javadoc)
-     * @see org.cesg.jshare.services.LinkManager#deleteLink(org.cesg.jshare.models.Link)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.cesg.jshare.services.LinkManager#deleteLink(org.cesg.jshare.models
+     * .Link)
      */
     public Integer deleteLink ( Link link) {
 
@@ -98,8 +110,8 @@ public final class PoolLinkManager implements LinkManager {
         try {
             filasAfectadas = mapper.deleteLink(link);
         } catch ( Exception e ) {
-            _logger.error("Error al eliminar el link.",e);
-        }finally {
+            _logger.error("Error al eliminar el link.", e);
+        } finally {
             this.session.close();
         }
         return filasAfectadas;

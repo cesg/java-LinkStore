@@ -27,6 +27,7 @@ public class TestPoolLinkManager {
 
     private static Link link;
     private static Link link2;
+
     @Before
     public void setUp () throws Exception {
         this.linkManager = new PoolLinkManager();

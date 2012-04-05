@@ -1,6 +1,5 @@
 package org.cesg.jsharelinks;
 
-
 import java.io.Reader;
 
 import org.apache.ibatis.io.Resources;
@@ -16,9 +15,10 @@ import org.slf4j.LoggerFactory;
 public class ConnectioFactory {
 
     private static final String resource = "mybatis-config.xml";
-    private static  SqlSessionFactory sqlMapper;
+    private static SqlSessionFactory sqlMapper;
     private static Reader reader;
-    private static final Logger _logger = LoggerFactory.getLogger(ConnectioFactory.class);
+    private static final Logger _logger = LoggerFactory
+            .getLogger(ConnectioFactory.class);
 
     static {
         try {
