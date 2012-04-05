@@ -1,5 +1,7 @@
 package org.cesg.jsharelinks.ui;
 
+import static org.cesg.jsharelinks.utilidades.Utilidades.CADENA_VACIA;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -58,11 +60,14 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
 
     private void llenarLista () {
         List<Link> listaLinks = this.linkManager.selectAllLink();
+        this.listModel.clear();
         for ( Link link : listaLinks) {
             this.listModel.addElement(link);
         }
         if ( listModel.size() > 0 )
             list.setSelectedIndex(0);
+
+        this.list.setModel(listModel);
     }
 
     /**
@@ -101,7 +106,6 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
         this.list.addMouseListener(this);
         this.list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.list.addListSelectionListener(this);
-        this.list.setModel(listModel);
         // ${txtrUrl}
         this.txtrUrl = new JTextArea();
         this.txtrUrl.setText("url");
@@ -113,7 +117,9 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
         if ( e.getSource() == this.btnBorrar ) {
             if ( list.getModel().getSize() > 0 ) {
                 handler.doBorrarLink(list.getSelectedValue().getId());
+                this.txtrUrl.setText(CADENA_VACIA);
                 llenarLista();
+                
             }
         }
         if ( e.getSource() == this.btnAgregar ) {
@@ -129,7 +135,9 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
 
     public void valueChanged ( final ListSelectionEvent e) {
         if ( e.getSource() == this.list ) {
-            txtrUrl.setText(list.getSelectedValue().getUrl());
+            Link link = list.getSelectedValue();
+            if ( link != null )
+                txtrUrl.setText(link.getUrl());
         }
     }
 
