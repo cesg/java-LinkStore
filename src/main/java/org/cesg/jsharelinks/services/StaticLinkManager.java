@@ -42,8 +42,6 @@ public final class StaticLinkManager implements LinkManager {
         } catch ( Exception e ) {
             _logger.error("# Error al intentar seleccionar un Link. {}",
                     e.getMessage());
-        } finally {
-            
         }
         return link;
     }
@@ -55,8 +53,6 @@ public final class StaticLinkManager implements LinkManager {
             allLinks = mapper.selectAllLink();
         } catch ( Exception e ) {
             _logger.error("# Error al seleccionar todas las filas.", e);
-        } finally {
-            this.session.close();
         }
         return allLinks;
     }
@@ -71,8 +67,6 @@ public final class StaticLinkManager implements LinkManager {
             this.session.commit();
         } catch ( Exception e ) {
             _logger.error("# Error al insertar el Link.", e);
-        } finally {
-            this.session.close();
         }
         return filasAfectadas;
     }
@@ -88,8 +82,6 @@ public final class StaticLinkManager implements LinkManager {
             this.session.commit();
         } catch ( Exception e ) {
             _logger.error("# Error al eliminar el link.", e);
-        } finally {
-            this.session.close();
         }
         return filasAfectadas;
     }
@@ -105,8 +97,6 @@ public final class StaticLinkManager implements LinkManager {
             this.session.commit();
         } catch ( Exception e ) {
             _logger.error("# Error al eliminar el link.", e);
-        } finally {
-            this.session.close();
         }
         return filasAfectadas;
     }
