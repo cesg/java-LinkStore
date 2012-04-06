@@ -46,6 +46,7 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
     private JList<Link> list;
     private JTextArea txtrUrl;
     private JScrollPane scrollPane;
+    private JButton btnRecargar;
 
     /**
      * Create the application.
@@ -97,23 +98,33 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
         this.btnAgregar.setBounds(32, 299, 117, 25);
         this.frmSharedLinks.getContentPane().add(this.btnAgregar);
         // ${component_name}
-        this.scrollPane = new JScrollPane();
-        this.scrollPane.setBounds(32, 58, 189, 228);
-        this.frmSharedLinks.getContentPane().add(this.scrollPane);
+        scrollPane = new JScrollPane();
+        scrollPane.setBounds(32, 19, 189, 228);
+        this.frmSharedLinks.getContentPane().add(scrollPane);
         // ${list}
         this.list = new JList<Link>();
-        this.scrollPane.setViewportView(this.list);
+        scrollPane.setViewportView(this.list);
         this.list.addMouseListener(this);
         this.list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         this.list.addListSelectionListener(this);
         // ${txtrUrl}
         this.txtrUrl = new JTextArea();
+        this.txtrUrl.setLineWrap(true);
         this.txtrUrl.setText("url");
-        this.txtrUrl.setBounds(233, 59, 378, 122);
+        this.txtrUrl.setBounds(233, 18, 378, 122);
         this.frmSharedLinks.getContentPane().add(this.txtrUrl);
+        // ${component_name}
+        this.btnRecargar = new JButton("Recargar");
+        this.btnRecargar.addActionListener(this);
+        this.btnRecargar.setBounds(32, 270, 117, 27);
+        this.frmSharedLinks.getContentPane().add(this.btnRecargar);
     }
 
+    // EVENTOS
     public void actionPerformed ( final ActionEvent e) {
+        if (e.getSource() == this.btnRecargar) {
+            llenarLista();
+        }
         if ( e.getSource() == this.btnBorrar ) {
             if ( list.getModel().getSize() > 0 ) {
                 handler.doBorrarLink(list.getSelectedValue().getId());
@@ -140,7 +151,7 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
                 txtrUrl.setText(link.getUrl());
         }
     }
-
+    
     /**
      * @wbp.parser.entryPoint
      */
@@ -170,6 +181,4 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
 
     public void mouseReleased ( final MouseEvent e) {
     }
-    // END REGION :: Metodos no usados.
-
 }

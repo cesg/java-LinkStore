@@ -1,13 +1,14 @@
 package org.cesg.jsharelinks.ui;
 
 import static org.cesg.jsharelinks.utilidades.Utilidades.tryGetTextFromClipBoard;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
@@ -15,18 +16,19 @@ import org.cesg.jsharelinks.models.Link;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AddUI implements Runnable , ActionListener , MouseListener {
+public class AddUI implements Runnable , ActionListener{
     private static final Logger _logger = LoggerFactory.getLogger(AddUI.class);
     private UIHandler handler;
     private static final String CADENA_VACIA = "";
-    private static final String COMENTARIO_DEFAULT = "Comentario";
-    private static final String URL_DEFAULT = "Url";
-
-    private JFrame frame;
+private static final String BTN_PEGAR_TIP = "Pega la url desde el porta papeles.";
+    
+    private JFrame frmLinksShared;
     private JTextField txtComentario;
     private JButton btnAgregar;
     private JTextArea txtrUrl;
     private JButton btnPegar;
+    private JLabel lblComentario;
+    private JLabel lblDireccinUrl;
 
     /**
      * Create the application.
@@ -40,32 +42,40 @@ public class AddUI implements Runnable , ActionListener , MouseListener {
      */
     private void initialize () {
         _logger.debug("# Iniciando los componentes.");
-        this.frame = new JFrame();
-        this.frame.setBounds(100, 100, 450, 300);
-        this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.frame.getContentPane().setLayout(null);
+        this.frmLinksShared = new JFrame();
+        this.frmLinksShared.setTitle("ADD LINK");
+        this.frmLinksShared.setBounds(100, 100, 450, 286);
+        this.frmLinksShared.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.frmLinksShared.getContentPane().setLayout(null);
         // ${txtComentario}
         this.txtComentario = new JTextField();
-        this.txtComentario.addMouseListener(this);
-        this.txtComentario.setText("comentario");
-        this.txtComentario.setBounds(24, 42, 316, 19);
-        this.frame.getContentPane().add(this.txtComentario);
+        this.txtComentario.setBounds(37, 47, 361, 25);
+        this.frmLinksShared.getContentPane().add(this.txtComentario);
         this.txtComentario.setColumns(10);
         // ${btnAgregar}
         this.btnAgregar = new JButton("Agregar");
         this.btnAgregar.addActionListener(this);
-        this.btnAgregar.setBounds(24, 195, 117, 25);
-        this.frame.getContentPane().add(this.btnAgregar);
+        this.btnAgregar.setBounds(37, 219, 117, 25);
+        this.frmLinksShared.getContentPane().add(this.btnAgregar);
         // ${txtrUrl}
         this.txtrUrl = new JTextArea();
-        this.txtrUrl.setText("url");
-        this.txtrUrl.setBounds(24, 77, 316, 80);
-        this.frame.getContentPane().add(this.txtrUrl);
-        // ${component_name}
+        this.txtrUrl.setLineWrap(true);
+        this.txtrUrl.setBounds(37, 114, 361, 80);
+        this.frmLinksShared.getContentPane().add(this.txtrUrl);
+        // ${btnPegar}
         this.btnPegar = new JButton("Pegar");
         this.btnPegar.addActionListener(this);
-        this.btnPegar.setBounds(252, 169, 88, 25);
-        this.frame.getContentPane().add(this.btnPegar);
+        this.btnPegar.setBounds(310, 195, 88, 25);
+        this.btnPegar.setToolTipText(BTN_PEGAR_TIP);
+        this.frmLinksShared.getContentPane().add(this.btnPegar);
+        // ${lblComentario}
+        this.lblComentario = new JLabel("Comentario (150 caracteres)");
+        this.lblComentario.setBounds(37, 33, 217, 15);
+        this.frmLinksShared.getContentPane().add(this.lblComentario);
+        // ${lblDireccinUrl}
+        this.lblDireccinUrl = new JLabel("Dirección url");
+        this.lblDireccinUrl.setBounds(37, 98, 104, 15);
+        this.frmLinksShared.getContentPane().add(this.lblDireccinUrl);
     }
 
     /**
@@ -74,7 +84,8 @@ public class AddUI implements Runnable , ActionListener , MouseListener {
     public void run () {
         try {
             initialize();
-            this.frame.setVisible(true);
+            this.txtComentario.setFocusable(true);
+            this.frmLinksShared.setVisible(true);
         } catch ( Exception e ) {
             _logger.error("## ERROR al iniciar la UI.", e);
         }
@@ -91,17 +102,10 @@ public class AddUI implements Runnable , ActionListener , MouseListener {
         }
     }
 
-    public void mouseEntered ( final MouseEvent e) {
-        if ( e.getSource() == this.txtComentario
-                && COMENTARIO_DEFAULT.equals(txtComentario.getText()) ) {
-            this.txtComentario.setText(CADENA_VACIA);
-        }
-    }
 
     private final Boolean verificador ( String comentario , String url) {
+        //TODO : Mejorar la verificación
         if ( comentario.length() > 0 && url.length() > 0 ) {
-            if ( !COMENTARIO_DEFAULT.equals(comentario)
-                    && !URL_DEFAULT.equals(url) )
                 return Boolean.TRUE;
         }
         return Boolean.FALSE;
@@ -116,24 +120,11 @@ public class AddUI implements Runnable , ActionListener , MouseListener {
             link = new Link();
             link.setComentario(comentario);
             link.setUrl(url);
-            _logger.debug("Insertando un nuevo link: {}", link.toString());
+            txtComentario.setText(CADENA_VACIA);
+            txtrUrl.setText(CADENA_VACIA);
+            JOptionPane.showMessageDialog(frmLinksShared, "Link agregado.");
         }
         return link;
 
     }
-
-    // ## REGION :: METODOS NO USADOS.
-    public void mouseClicked ( MouseEvent e) {
-    }
-
-    public void mousePressed ( MouseEvent e) {
-    }
-
-    public void mouseReleased ( MouseEvent e) {
-    }
-
-    public void mouseExited ( final MouseEvent e) {
-    }
-    // ## END REGION :: METODOS NO USADOS.
-
 }
