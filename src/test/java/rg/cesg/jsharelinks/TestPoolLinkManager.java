@@ -6,7 +6,7 @@ import junit.framework.Assert;
 
 import org.cesg.jsharelinks.models.Link;
 import org.cesg.jsharelinks.services.LinkManager;
-import org.cesg.jsharelinks.services.PoolLinkManager;
+import org.cesg.jsharelinks.services.DynamicLinkManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -30,7 +30,7 @@ public class TestPoolLinkManager {
 
     @Before
     public void setUp () throws Exception {
-        this.linkManager = new PoolLinkManager();
+        this.linkManager = new DynamicLinkManager();
         link = new Link();
         link2 = new Link();
         // link.setId(link_id);

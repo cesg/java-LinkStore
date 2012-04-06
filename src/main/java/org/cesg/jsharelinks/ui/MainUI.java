@@ -122,7 +122,7 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
 
     // EVENTOS
     public void actionPerformed ( final ActionEvent e) {
-        if (e.getSource() == this.btnRecargar) {
+        if ( e.getSource() == this.btnRecargar ) {
             llenarLista();
         }
         if ( e.getSource() == this.btnBorrar ) {
@@ -130,7 +130,7 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
                 handler.doBorrarLink(list.getSelectedValue().getId());
                 this.txtrUrl.setText(CADENA_VACIA);
                 llenarLista();
-                
+
             }
         }
         if ( e.getSource() == this.btnAgregar ) {
@@ -151,7 +151,7 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
                 txtrUrl.setText(link.getUrl());
         }
     }
-    
+
     /**
      * @wbp.parser.entryPoint
      */

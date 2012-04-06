@@ -13,24 +13,28 @@ import org.slf4j.LoggerFactory;
 
 public final class StaticLinkManager implements LinkManager {
 
-    private  SqlSession session;
-    private static final Logger _logger = LoggerFactory.getLogger(StaticLinkManager.class);
-    private  LinkMapper mapper;
-    
-    public StaticLinkManager() {
+    private SqlSession session;
+    private static final Logger _logger = LoggerFactory
+            .getLogger(StaticLinkManager.class);
+    private LinkMapper mapper;
+
+    public StaticLinkManager () {
         SqlSessionFactory sqlSessionFactory = ConnectioFactory.getSession();
-        if(sqlSessionFactory != null) {
-            this.session = ConnectioFactory.getSession().openSession();
+        if ( sqlSessionFactory != null ) {
+            this.session = sqlSessionFactory.openSession();
             this.mapper = this.session.getMapper(LinkMapper.class);
-        }else
-            _logger.error("# Session no iniciada.");
+        }
     }
-    
-    public void closeSession() {
-        if(this.session != null)
-            this.session.close();
+
+    public StaticLinkManager ( SqlSession _session) {
+        this.session = _session;
+        this.mapper = this.session.getMapper(LinkMapper.class);
     }
-    
+
+    public void closeSession () {
+        this.session.close();
+    }
+
     public Link selectLink ( Integer id) {
 
         Link link = null;
@@ -87,7 +91,7 @@ public final class StaticLinkManager implements LinkManager {
     }
 
     public Integer deleteLinkById ( Integer id) {
-        
+
         Integer filasAfectadas = null;
         if ( id == null )
             return filasAfectadas;

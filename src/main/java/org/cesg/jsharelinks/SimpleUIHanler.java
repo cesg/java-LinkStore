@@ -49,7 +49,7 @@ public class SimpleUIHanler implements UIHandler {
     }
 
     public void doBorrarLink ( Integer id) {
-        linkManager.deleteLinkById(id);        
+        linkManager.deleteLinkById(id);
     }
 
 }
