@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
  * @author kristian
  * 
  */
-public final class PoolLinkManager implements LinkManager {
+public final class DynamicLinkManager implements LinkManager {
 
     private SqlSession session;
     private final Logger _logger = LoggerFactory.getLogger(getClass());
@@ -33,7 +33,7 @@ public final class PoolLinkManager implements LinkManager {
         try {
             link = mapper.selectLinkById(id);
         } catch ( Exception e ) {
-            _logger.error("Error al intentar seleccionar un Link. {}",
+            _logger.error("# Error al intentar seleccionar un Link. {}",
                     e.getMessage());
         } finally {
             this.session.close();
@@ -49,7 +49,7 @@ public final class PoolLinkManager implements LinkManager {
         try {
             allLinks = mapper.selectAllLink();
         } catch ( Exception e ) {
-            _logger.error("##Error al seleccionar todas las filas.", e);
+            _logger.error("# Error al seleccionar todas las filas.", e);
         } finally {
             this.session.close();
         }
@@ -68,7 +68,7 @@ public final class PoolLinkManager implements LinkManager {
             filasAfectadas = mapper.insertLink(link);
             this.session.commit();
         } catch ( Exception e ) {
-            _logger.error("Error al insertar el Link.", e);
+            _logger.error("# Error al insertar el Link.", e);
         } finally {
             this.session.close();
         }
@@ -87,7 +87,7 @@ public final class PoolLinkManager implements LinkManager {
             filasAfectadas = mapper.deleteLink(link);
             this.session.commit();
         } catch ( Exception e ) {
-            _logger.error("Error al eliminar el link.", e);
+            _logger.error("# Error al eliminar el link.", e);
         } finally {
             this.session.close();
         }
@@ -105,7 +105,7 @@ public final class PoolLinkManager implements LinkManager {
             filasAfectadas = mapper.deleteLinkById(id);
             this.session.commit();
         } catch ( Exception e ) {
-            _logger.error("Error al eliminar el link.", e);
+            _logger.error("# Error al eliminar el link.", e);
         } finally {
             this.session.close();
         }

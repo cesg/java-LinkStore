@@ -20,7 +20,7 @@ import javax.swing.event.ListSelectionListener;
 
 import org.cesg.jsharelinks.models.Link;
 import org.cesg.jsharelinks.services.LinkManager;
-import org.cesg.jsharelinks.services.PoolLinkManager;
+import org.cesg.jsharelinks.services.DynamicLinkManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -54,7 +54,7 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
 
     public MainUI ( UIHandler handler) {
         this.handler = handler;
-        this.linkManager = new PoolLinkManager();
+        this.linkManager = new DynamicLinkManager();
         this.listModel = new DefaultListModel<Link>();
 
     }
