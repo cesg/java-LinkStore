@@ -106,6 +106,7 @@ private static final String BTN_PEGAR_TIP = "Pega la url desde el porta papeles.
     private final Boolean verificador ( String comentario , String url) {
         //TODO : Mejorar la verificación
         if ( comentario.length() > 0 && url.length() > 0 ) {
+            if(comentario.length() < 150)
                 return Boolean.TRUE;
         }
         return Boolean.FALSE;
