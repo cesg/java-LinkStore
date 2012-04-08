@@ -113,7 +113,7 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
         this.txtrUrl.setText("url");
         this.txtrUrl.setBounds(233, 18, 378, 122);
         this.frmSharedLinks.getContentPane().add(this.txtrUrl);
-        // ${component_name}
+        // ${btnRecargar}
         this.btnRecargar = new JButton("Recargar");
         this.btnRecargar.addActionListener(this);
         this.btnRecargar.setBounds(32, 270, 117, 27);
