@@ -60,7 +60,7 @@ public class Link implements Serializable {
 
     @Override
     public String toString () {
-        StringBuilder builder = new StringBuilder();
+        final StringBuilder builder = new StringBuilder();
         // builder.append("Link [id=");
         builder.append(id);
         // builder.append(", url=");
@@ -88,7 +88,7 @@ public class Link implements Serializable {
             return false;
         if ( getClass() != obj.getClass() )
             return false;
-        Link other = ( Link ) obj;
+        final Link other = ( Link ) obj;
         if ( id == null ) {
             if ( other.id != null )
                 return false;

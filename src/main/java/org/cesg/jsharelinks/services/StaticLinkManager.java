@@ -19,7 +19,7 @@ public final class StaticLinkManager implements LinkManager {
     private LinkMapper mapper;
 
     public StaticLinkManager () {
-        SqlSessionFactory sqlSessionFactory = ConnectioFactory.getSession();
+        final SqlSessionFactory sqlSessionFactory = ConnectioFactory.getSession();
         if ( sqlSessionFactory != null ) {
             this.session = sqlSessionFactory.openSession();
             this.mapper = this.session.getMapper(LinkMapper.class);
@@ -43,7 +43,7 @@ public final class StaticLinkManager implements LinkManager {
 
         try {
             link = mapper.selectLinkById(id);
-        } catch ( Exception e ) {
+        } catch ( final Exception e ) {
             _logger.error("# Error al intentar seleccionar un Link. {}",
                     e.getMessage());
         }
@@ -55,7 +55,7 @@ public final class StaticLinkManager implements LinkManager {
 
         try {
             allLinks = mapper.selectAllLink();
-        } catch ( Exception e ) {
+        } catch ( final Exception e ) {
             _logger.error("# Error al seleccionar todas las filas.", e);
         }
         return allLinks;
@@ -69,7 +69,7 @@ public final class StaticLinkManager implements LinkManager {
         try {
             filasAfectadas = mapper.insertLink(link);
             this.session.commit();
-        } catch ( Exception e ) {
+        } catch ( final Exception e ) {
             _logger.error("# Error al insertar el Link.", e);
         }
         return filasAfectadas;
@@ -84,7 +84,7 @@ public final class StaticLinkManager implements LinkManager {
         try {
             filasAfectadas = mapper.deleteLink(link);
             this.session.commit();
-        } catch ( Exception e ) {
+        } catch ( final Exception e ) {
             _logger.error("# Error al eliminar el link.", e);
         }
         return filasAfectadas;
@@ -99,7 +99,7 @@ public final class StaticLinkManager implements LinkManager {
         try {
             filasAfectadas = mapper.deleteLinkById(id);
             this.session.commit();
-        } catch ( Exception e ) {
+        } catch ( final Exception e ) {
             _logger.error("# Error al eliminar el link.", e);
         }
         return filasAfectadas;

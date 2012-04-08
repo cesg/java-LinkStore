@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.WindowConstants;
 
 import org.cesg.jsharelinks.models.Link;
 import org.slf4j.Logger;
@@ -18,7 +19,7 @@ import org.slf4j.LoggerFactory;
 
 public class AddUI implements Runnable , ActionListener {
     private static final Logger _logger = LoggerFactory.getLogger(AddUI.class);
-    private UIHandler handler;
+    private final UIHandler handler;
     private static final String CADENA_VACIA = "";
     private static final String BTN_PEGAR_TIP = "Pega la url desde el porta papeles.";
 
@@ -45,7 +46,7 @@ public class AddUI implements Runnable , ActionListener {
         this.frmLinksShared = new JFrame();
         this.frmLinksShared.setTitle("ADD LINK");
         this.frmLinksShared.setBounds(100, 100, 450, 286);
-        this.frmLinksShared.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        this.frmLinksShared.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.frmLinksShared.getContentPane().setLayout(null);
         // ${txtComentario}
         this.txtComentario = new JTextField();
@@ -86,14 +87,14 @@ public class AddUI implements Runnable , ActionListener {
             initialize();
             this.txtComentario.setFocusable(true);
             this.frmLinksShared.setVisible(true);
-        } catch ( Exception e ) {
+        } catch ( final Exception e ) {
             _logger.error("## ERROR al iniciar la UI.", e);
         }
     }
 
     public void actionPerformed ( final ActionEvent e) {
         if ( e.getSource() == this.btnPegar ) {
-            String portaPapeles = tryGetTextFromClipBoard();
+            final String portaPapeles = tryGetTextFromClipBoard();
             if ( portaPapeles.length() > 0 )
                 this.txtrUrl.setText(portaPapeles);
         }

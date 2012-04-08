@@ -27,19 +27,19 @@ public class JShareLinksInicio {
      */
     public static void main ( String[] args) {
 
-        SimpleUIHanler uiHandler = new SimpleUIHanler();
+        final SimpleUIHanler uiHandler = new SimpleUIHanler();
         try {
             if ( estaEnLinux() )
                 UIManager.setLookAndFeel(GTK_LAF);
             else
                 UIManager.setLookAndFeel(WIN_LAF);
-        } catch ( ClassNotFoundException e ) {
+        } catch ( final ClassNotFoundException e ) {
             _logger.error("# LookAndFeel no encontrada.", e);
-        } catch ( InstantiationException e ) {
+        } catch ( final InstantiationException e ) {
             _logger.error("# LookAndFeel no se puede iniciar una instancia.", e);
-        } catch ( IllegalAccessException e ) {
+        } catch ( final IllegalAccessException e ) {
             _logger.error("# LookAndFeel no se puede acceder.", e);
-        } catch ( UnsupportedLookAndFeelException e ) {
+        } catch ( final UnsupportedLookAndFeelException e ) {
             _logger.error("# LookAndFeel no soportada.", e);
         } finally {
             new Thread(new MainUI(uiHandler)).start();
@@ -48,7 +48,7 @@ public class JShareLinksInicio {
     }
 
     private static Boolean estaEnLinux () {
-        String so = System.getProperty("os.name");
+        final String so = System.getProperty("os.name");
         _logger.info("# Programa corriendo sobre: {}", so);
         return SO_LINUX.equalsIgnoreCase(so);
     }

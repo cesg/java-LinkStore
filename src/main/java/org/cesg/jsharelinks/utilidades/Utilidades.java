@@ -22,16 +22,16 @@ public final class Utilidades {
 
     public static String tryGetTextFromClipBoard () {
         String resultado = CADENA_VACIA;
-        Transferable t = Toolkit.getDefaultToolkit().getSystemClipboard()
+        final Transferable t = Toolkit.getDefaultToolkit().getSystemClipboard()
                 .getContents(null);
         try {
             if ( t != null && t.isDataFlavorSupported(DataFlavor.stringFlavor) ) {
-                String text = ( String ) t
+                final String text = ( String ) t
                         .getTransferData(DataFlavor.stringFlavor);
 
                 resultado = text.trim();
             }
-        } catch ( Exception e ) {
+        } catch ( final Exception e ) {
             _logger.error(
                     "# Error al intentar obtener string desde el clipboard. ",
                     e);

@@ -36,8 +36,8 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
 
     private final static Logger _logger = LoggerFactory.getLogger(MainUI.class);
     private final LinkManager linkManager;
-    private UIHandler handler;
-    private DefaultListModel<Link> listModel;
+    private final UIHandler handler;
+    private final DefaultListModel<Link> listModel;
 
     private JFrame frmSharedLinks;
     public JButton btnIr;
@@ -60,9 +60,9 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
     }
 
     private void llenarLista () {
-        List<Link> listaLinks = this.linkManager.selectAllLink();
+        final List<Link> listaLinks = this.linkManager.selectAllLink();
         this.listModel.clear();
-        for ( Link link : listaLinks) {
+        for ( final Link link : listaLinks) {
             this.listModel.addElement(link);
         }
         if ( listModel.size() > 0 )
@@ -146,7 +146,7 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
 
     public void valueChanged ( final ListSelectionEvent e) {
         if ( e.getSource() == this.list ) {
-            Link link = list.getSelectedValue();
+            final Link link = list.getSelectedValue();
             if ( link != null )
                 txtrUrl.setText(link.getUrl());
         }
@@ -160,7 +160,7 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
             initialize();
             this.frmSharedLinks.setVisible(true);
             llenarLista();
-        } catch ( Exception e ) {
+        } catch ( final Exception e ) {
             _logger.error("## ERROR al iniciar la UI.", e);
         }
 

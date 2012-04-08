@@ -28,9 +28,9 @@ public class SimpleUIHanler implements UIHandler {
     public void doIr ( String url) {
         try {
             Desktop.getDesktop().browse(new java.net.URI(url));
-        } catch ( IOException e ) {
+        } catch ( final IOException e ) {
             _logger.error("", e);
-        } catch ( URISyntaxException e ) {
+        } catch ( final URISyntaxException e ) {
             _logger.error("", e);
         }
     }
