@@ -36,7 +36,7 @@ public final class DynamicLinkManager implements LinkManager {
             _logger.error("# Error al intentar seleccionar un Link. {}",
                     e.getMessage());
         } finally {
-            this.session.close();
+            closeSession();
         }
         return link;
     }
@@ -51,7 +51,7 @@ public final class DynamicLinkManager implements LinkManager {
         } catch ( final Exception e ) {
             _logger.error("# Error al seleccionar todas las filas.", e);
         } finally {
-            this.session.close();
+            closeSession();
         }
         return allLinks;
     }
@@ -70,7 +70,7 @@ public final class DynamicLinkManager implements LinkManager {
         } catch ( final Exception e ) {
             _logger.error("# Error al insertar el Link.", e);
         } finally {
-            this.session.close();
+            closeSession();
         }
         return filasAfectadas;
     }
@@ -89,7 +89,7 @@ public final class DynamicLinkManager implements LinkManager {
         } catch ( final Exception e ) {
             _logger.error("# Error al eliminar el link.", e);
         } finally {
-            this.session.close();
+            closeSession();
         }
         return filasAfectadas;
     }
@@ -107,13 +107,18 @@ public final class DynamicLinkManager implements LinkManager {
         } catch ( final Exception e ) {
             _logger.error("# Error al eliminar el link.", e);
         } finally {
-            this.session.close();
+            closeSession();
         }
         return filasAfectadas;
     }
 
     private final void OpenSession () {
         this.session = ConnectioFactory.getSession().openSession();
+    }
+
+    public void closeSession () {
+        if(this.session != null)
+            this.session.close();        
     }
 
 }

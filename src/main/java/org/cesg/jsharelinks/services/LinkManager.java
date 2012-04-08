@@ -57,4 +57,9 @@ public interface LinkManager {
      *         null si no modifico ninguna.
      */
     Integer deleteLinkById ( Integer id);
+    
+    /**
+     * Cierra la session.
+     */
+    void closeSession();
 }
