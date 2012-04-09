@@ -82,6 +82,7 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
         this.frmSharedLinks.setBounds(100, 100, 627, 391);
         this.frmSharedLinks.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frmSharedLinks.getContentPane().setLayout(null);
+        this.frmSharedLinks.setLocationRelativeTo(null);
         // ${btnIr}
         this.btnIr = new JButton("IR");
         this.btnIr.addActionListener(this);

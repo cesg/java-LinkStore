@@ -49,6 +49,7 @@ public class AddUI implements Runnable , ActionListener {
         this.frmLinksShared.setBounds(100, 100, 450, 286);
         this.frmLinksShared.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.frmLinksShared.getContentPane().setLayout(null);
+        this.frmLinksShared.setLocationRelativeTo(null);
         // ${txtComentario}
         this.txtComentario = new JTextField();
         this.txtComentario.setBounds(37, 47, 361, 25);
