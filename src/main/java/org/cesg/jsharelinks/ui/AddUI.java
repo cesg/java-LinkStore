@@ -44,6 +44,7 @@ public class AddUI implements Runnable , ActionListener {
     private void initialize () {
         _logger.debug("# Iniciando los componentes.");
         this.frmLinksShared = new JFrame();
+        this.frmLinksShared.setResizable(false);
         this.frmLinksShared.setTitle("ADD LINK");
         this.frmLinksShared.setBounds(100, 100, 450, 286);
         this.frmLinksShared.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
