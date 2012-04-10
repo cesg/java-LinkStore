@@ -45,4 +45,9 @@ public interface UIHandler {
      * un link.
      */
     void doShowAddLink ();
+
+    /**
+     * Cierra todas la conexiones a la base de datos.
+     */
+    void doCerrarConexiones ();
 }

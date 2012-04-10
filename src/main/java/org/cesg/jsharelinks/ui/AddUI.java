@@ -47,7 +47,8 @@ public class AddUI implements Runnable , ActionListener {
         this.frmLinksShared.setResizable(false);
         this.frmLinksShared.setTitle("ADD LINK");
         this.frmLinksShared.setBounds(100, 100, 450, 286);
-        this.frmLinksShared.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        this.frmLinksShared
+                .setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         this.frmLinksShared.getContentPane().setLayout(null);
         this.frmLinksShared.setLocationRelativeTo(null);
         // ${txtComentario}

@@ -31,8 +31,8 @@ public class JShareLinksInicio {
 
         final SimpleUIHanler uiHandler = new SimpleUIHanler();
         try {
-            GraphiteLookAndFeel graphiteLaf = new GraphiteLookAndFeel();
-            if(graphiteLaf.isSupportedLookAndFeel())
+            final GraphiteLookAndFeel graphiteLaf = new GraphiteLookAndFeel();
+            if ( graphiteLaf.isSupportedLookAndFeel() )
                 UIManager.setLookAndFeel(graphiteLaf);
             else if ( estaEnLinux() )
                 UIManager.setLookAndFeel(GTK_LAF);

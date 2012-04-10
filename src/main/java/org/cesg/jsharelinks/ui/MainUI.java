@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowListener;
 import java.util.List;
 
 import javax.swing.DefaultListModel;
@@ -23,6 +24,7 @@ import org.cesg.jsharelinks.services.LinkManager;
 import org.cesg.jsharelinks.services.DynamicLinkManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.awt.event.WindowEvent;
 
 /**
  * UI principal para el manejo de los links.<br>
@@ -83,6 +85,30 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
         this.frmSharedLinks.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.frmSharedLinks.getContentPane().setLayout(null);
         this.frmSharedLinks.setLocationRelativeTo(null);
+        this.frmSharedLinks.addWindowListener(new WindowListener() {
+            public void windowOpened ( WindowEvent e) {
+            }
+
+            public void windowIconified ( WindowEvent e) {
+            }
+
+            public void windowDeiconified ( WindowEvent e) {
+            }
+
+            public void windowDeactivated ( WindowEvent e) {
+            }
+
+            public void windowClosing ( WindowEvent e) {
+                _logger.debug("# Cerrando conexiones.");
+                handler.doCerrarConexiones();
+            }
+
+            public void windowClosed ( WindowEvent e) {
+            }
+
+            public void windowActivated ( WindowEvent e) {
+            }
+        });
         // ${btnIr}
         this.btnIr = new JButton("IR");
         this.btnIr.addActionListener(this);

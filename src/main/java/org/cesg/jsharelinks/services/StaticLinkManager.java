@@ -18,13 +18,13 @@ public final class StaticLinkManager implements LinkManager {
             .getLogger(StaticLinkManager.class);
     private LinkMapper mapper;
 
-    
     /**
      * Inicia un manager, obtiene una sesión desde <br>
      * ConnectionFactory.
      */
     public StaticLinkManager () {
-        final SqlSessionFactory sqlSessionFactory = ConnectioFactory.getSession();
+        final SqlSessionFactory sqlSessionFactory = ConnectioFactory
+                .getSession();
         if ( sqlSessionFactory != null ) {
             this.session = sqlSessionFactory.openSession();
             this.mapper = this.session.getMapper(LinkMapper.class);
@@ -33,7 +33,9 @@ public final class StaticLinkManager implements LinkManager {
 
     /**
      * Inicia un manager con una sesión establecida.
-     * @param _session session, para operar.
+     * 
+     * @param _session
+     *            session, para operar.
      */
     public StaticLinkManager ( SqlSession _session) {
         this.session = _session;

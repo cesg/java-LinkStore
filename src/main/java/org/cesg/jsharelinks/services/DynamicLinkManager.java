@@ -117,8 +117,8 @@ public final class DynamicLinkManager implements LinkManager {
     }
 
     public void closeSession () {
-        if(this.session != null)
-            this.session.close();        
+        if ( this.session != null )
+            this.session.close();
     }
 
 }

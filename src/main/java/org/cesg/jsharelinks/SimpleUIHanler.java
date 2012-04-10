@@ -9,7 +9,7 @@ import java.net.URISyntaxException;
 
 import org.cesg.jsharelinks.models.Link;
 import org.cesg.jsharelinks.services.LinkManager;
-import org.cesg.jsharelinks.services.DynamicLinkManager;
+import org.cesg.jsharelinks.services.StaticLinkManager;
 import org.cesg.jsharelinks.ui.AddUI;
 import org.cesg.jsharelinks.ui.UIHandler;
 import org.slf4j.Logger;
@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
  */
 public class SimpleUIHanler implements UIHandler {
 
-    private final LinkManager linkManager = new DynamicLinkManager();
+    private final LinkManager linkManager = new StaticLinkManager();
     private static final Logger _logger = LoggerFactory
             .getLogger(SimpleUIHanler.class);
 
@@ -50,6 +50,10 @@ public class SimpleUIHanler implements UIHandler {
 
     public void doBorrarLink ( Integer id) {
         linkManager.deleteLinkById(id);
+    }
+
+    public void doCerrarConexiones () {
+        linkManager.closeSession();
     }
 
 }
