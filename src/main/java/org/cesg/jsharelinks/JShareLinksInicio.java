@@ -11,7 +11,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
-import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
 
 /**
  * @author kristian
@@ -32,9 +31,9 @@ public class JShareLinksInicio {
 
         final SimpleUIHanler uiHandler = new SimpleUIHanler();
         try {
-            final AcrylLookAndFeel graphiteLaf = new AcrylLookAndFeel();
-            if ( graphiteLaf.isSupportedLookAndFeel() )
-                UIManager.setLookAndFeel(graphiteLaf);
+            final AcrylLookAndFeel acrylLookAndFeel = new AcrylLookAndFeel();
+            if ( acrylLookAndFeel.isSupportedLookAndFeel() )
+                UIManager.setLookAndFeel(acrylLookAndFeel);
             else if ( estaEnLinux() )
                 UIManager.setLookAndFeel(GTK_LAF);
             else
