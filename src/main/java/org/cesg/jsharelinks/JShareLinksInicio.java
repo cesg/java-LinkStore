@@ -10,6 +10,7 @@ import org.cesg.jsharelinks.ui.MainUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
 import com.jtattoo.plaf.graphite.GraphiteLookAndFeel;
 
 /**
@@ -31,7 +32,7 @@ public class JShareLinksInicio {
 
         final SimpleUIHanler uiHandler = new SimpleUIHanler();
         try {
-            final GraphiteLookAndFeel graphiteLaf = new GraphiteLookAndFeel();
+            final AcrylLookAndFeel graphiteLaf = new AcrylLookAndFeel();
             if ( graphiteLaf.isSupportedLookAndFeel() )
                 UIManager.setLookAndFeel(graphiteLaf);
             else if ( estaEnLinux() )

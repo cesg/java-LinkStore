@@ -16,6 +16,7 @@ import javax.swing.WindowConstants;
 import org.cesg.jsharelinks.models.Link;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.awt.Toolkit;
 
 public class AddUI implements Runnable , ActionListener {
     private static final Logger _logger = LoggerFactory.getLogger(AddUI.class);
@@ -44,6 +45,7 @@ public class AddUI implements Runnable , ActionListener {
     private void initialize () {
         _logger.debug("# Iniciando los componentes.");
         this.frmLinksShared = new JFrame();
+        this.frmLinksShared.setIconImage(Toolkit.getDefaultToolkit().getImage(AddUI.class.getResource("/org/cesg/jsharelinks/ui/icono.png")));
         this.frmLinksShared.setResizable(false);
         this.frmLinksShared.setTitle("ADD LINK");
         this.frmLinksShared.setBounds(100, 100, 450, 286);

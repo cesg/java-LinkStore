@@ -25,6 +25,7 @@ import org.cesg.jsharelinks.services.DynamicLinkManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.awt.event.WindowEvent;
+import java.awt.Toolkit;
 
 /**
  * UI principal para el manejo de los links.<br>
@@ -79,6 +80,7 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
     private void initialize () {
         _logger.debug("# Iniciando los componentes.");
         this.frmSharedLinks = new JFrame();
+        this.frmSharedLinks.setIconImage(Toolkit.getDefaultToolkit().getImage(MainUI.class.getResource("/org/cesg/jsharelinks/ui/icono.png")));
         this.frmSharedLinks.setResizable(false);
         this.frmSharedLinks.setTitle("SHARED LINKS");
         this.frmSharedLinks.setBounds(100, 100, 627, 391);
