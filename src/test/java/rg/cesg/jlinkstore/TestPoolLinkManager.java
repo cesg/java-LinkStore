@@ -1,12 +1,12 @@
-package rg.cesg.jsharelinks;
+package rg.cesg.jlinkstore;
 
 import java.util.List;
 
 import junit.framework.Assert;
 
-import org.cesg.jsharelinks.models.Link;
-import org.cesg.jsharelinks.services.LinkManager;
-import org.cesg.jsharelinks.services.DynamicLinkManager;
+import org.cesg.jlinkstore.models.Link;
+import org.cesg.jlinkstore.services.DynamicLinkManager;
+import org.cesg.jlinkstore.services.LinkManager;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;

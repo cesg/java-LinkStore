@@ -1,4 +1,4 @@
-package org.cesg.jsharelinks.models;
+package org.cesg.jlinkstore.models;
 
 import java.io.Serializable;
 

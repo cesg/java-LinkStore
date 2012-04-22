@@ -1,6 +1,6 @@
-package org.cesg.jsharelinks.ui;
+package org.cesg.jlinkstore.ui;
 
-import static org.cesg.jsharelinks.utilidades.Utilidades.tryGetTextFromClipBoard;
+import static org.cesg.jlinkstore.utilidades.Utilidades.tryGetTextFromClipBoard;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +13,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
-import org.cesg.jsharelinks.models.Link;
+import org.cesg.jlinkstore.models.Link;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.awt.Toolkit;

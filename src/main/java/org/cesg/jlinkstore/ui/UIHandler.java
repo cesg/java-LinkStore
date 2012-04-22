@@ -1,6 +1,6 @@
-package org.cesg.jsharelinks.ui;
+package org.cesg.jlinkstore.ui;
 
-import org.cesg.jsharelinks.models.Link;
+import org.cesg.jlinkstore.models.Link;
 
 /**
  * Interfas para la comunicación de la UI. <br>

@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.cesg.jsharelinks.utilidades;
+package org.cesg.jlinkstore.utilidades;
 
 import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;

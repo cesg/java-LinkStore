@@ -1,17 +1,17 @@
 /**
  * 
  */
-package org.cesg.jsharelinks;
+package org.cesg.jlinkstore;
 
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import org.cesg.jsharelinks.models.Link;
-import org.cesg.jsharelinks.services.LinkManager;
-import org.cesg.jsharelinks.services.StaticLinkManager;
-import org.cesg.jsharelinks.ui.AddUI;
-import org.cesg.jsharelinks.ui.UIHandler;
+import org.cesg.jlinkstore.models.Link;
+import org.cesg.jlinkstore.services.LinkManager;
+import org.cesg.jlinkstore.services.StaticLinkManager;
+import org.cesg.jlinkstore.ui.AddUI;
+import org.cesg.jlinkstore.ui.UIHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

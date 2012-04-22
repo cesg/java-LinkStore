@@ -1,12 +1,12 @@
 /**
  * 
  */
-package org.cesg.jsharelinks;
+package org.cesg.jlinkstore;
 
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
-import org.cesg.jsharelinks.ui.MainUI;
+import org.cesg.jlinkstore.ui.MainUI;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,10 +16,10 @@ import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
  * @author kristian
  * @version 05.04.2012
  */
-public class JShareLinksInicio {
+public class JLinkStoreRun {
 
     private static final Logger _logger = LoggerFactory
-            .getLogger(JShareLinksInicio.class);
+            .getLogger(JLinkStoreRun.class);
     private static final String SO_LINUX = "Linux";
     private static final String GTK_LAF = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
     private static final String WIN_LAF = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";

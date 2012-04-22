@@ -1,6 +1,6 @@
-package org.cesg.jsharelinks.ui;
+package org.cesg.jlinkstore.ui;
 
-import static org.cesg.jsharelinks.utilidades.Utilidades.CADENA_VACIA;
+import static org.cesg.jlinkstore.utilidades.Utilidades.CADENA_VACIA;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -19,9 +19,9 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import org.cesg.jsharelinks.models.Link;
-import org.cesg.jsharelinks.services.LinkManager;
-import org.cesg.jsharelinks.services.DynamicLinkManager;
+import org.cesg.jlinkstore.models.Link;
+import org.cesg.jlinkstore.services.DynamicLinkManager;
+import org.cesg.jlinkstore.services.LinkManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.awt.event.WindowEvent;
@@ -80,7 +80,7 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
     private void initialize () {
         _logger.debug("# Iniciando los componentes.");
         this.frmSharedLinks = new JFrame();
-        this.frmSharedLinks.setIconImage(Toolkit.getDefaultToolkit().getImage(MainUI.class.getResource("/org/cesg/jsharelinks/ui/icono.png")));
+        this.frmSharedLinks.setIconImage(Toolkit.getDefaultToolkit().getImage(MainUI.class.getResource("/org/cesg/jlinkstore/ui/icono.png")));
         this.frmSharedLinks.setResizable(false);
         this.frmSharedLinks.setTitle("SHARED LINKS");
         this.frmSharedLinks.setBounds(100, 100, 627, 391);

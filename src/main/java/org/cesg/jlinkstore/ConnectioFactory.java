@@ -1,4 +1,4 @@
-package org.cesg.jsharelinks;
+package org.cesg.jlinkstore;
 
 import java.io.Reader;
 

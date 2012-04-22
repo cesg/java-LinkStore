@@ -1,4 +1,4 @@
-package org.cesg.jsharelinks.mappers;
+package org.cesg.jlinkstore.mappers;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
-import org.cesg.jsharelinks.models.Link;
+import org.cesg.jlinkstore.models.Link;
 
 /**
  * Interfas para el mappeo de un link.

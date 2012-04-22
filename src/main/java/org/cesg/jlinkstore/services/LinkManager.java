@@ -1,8 +1,8 @@
-package org.cesg.jsharelinks.services;
+package org.cesg.jlinkstore.services;
 
 import java.util.List;
 
-import org.cesg.jsharelinks.models.Link;
+import org.cesg.jlinkstore.models.Link;
 
 /**
  * Manejador de link <br>
