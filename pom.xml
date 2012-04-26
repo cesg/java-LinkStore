@@ -5,7 +5,11 @@
 	<artifactId>jLinkStore</artifactId>
 	<packaging>pom</packaging>
 	<version>0.0.3</version>
-	<url>http://maven.apache.org</url>
+	<name>JLinkStore</name>
+	<modules>
+		<module>JLinkStore.kernel</module>
+		<module>JLinkStore.UI</module>
+	</modules>
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -19,8 +23,4 @@
 			<version>1.6.4</version>
 		</dependency>
 	</dependencies>
-	<modules>
-		<module>JLinkStore.kernel</module>
-		<module>JLinkStore.UI</module>
-	</modules>
 </project>
