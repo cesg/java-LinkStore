@@ -2,3 +2,5 @@
 *.project
 /.settings
 /target
+/database/*.lck
+/database/*.log
