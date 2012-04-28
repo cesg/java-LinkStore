@@ -1,4 +1,8 @@
-LibrerÃ­as usadas:
+# Resumen
+Aplicación para almacenar links.
+
+# Librerias
+JAVA JDK 7
 HSQLDB (http://hsqldb.org/)
 MYBATIS (http://www.mybatis.org/)
 SLF4J (http://www.slf4j.org/)

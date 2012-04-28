@@ -26,13 +26,11 @@ public class SimpleUIHanler implements UIHandler {
     private static final Logger _logger = LoggerFactory
             .getLogger(SimpleUIHanler.class);
 
-    public void doIr ( String url) {
+    public void doIr ( final String url) {
         try {
             Desktop.getDesktop().browse(new java.net.URI(url));
-        } catch ( final IOException e ) {
-            _logger.error("", e);
-        } catch ( final URISyntaxException e ) {
-            _logger.error("", e);
+        } catch ( IOException |  URISyntaxException ex) {
+            _logger.error("# Erro al iniciar el navegador.", ex);
         }
     }
 
