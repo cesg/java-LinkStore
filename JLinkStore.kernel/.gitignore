@@ -4,4 +4,3 @@
 /target
 /database/*.lck
 /database/*.log
-/database/*.properties
