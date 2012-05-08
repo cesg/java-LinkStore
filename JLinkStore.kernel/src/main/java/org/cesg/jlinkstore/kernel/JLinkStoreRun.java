@@ -24,6 +24,7 @@ public class JLinkStoreRun {
     private static final String WIN_LAF = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
 
     /**
+     * Main method.
      * @param args
      */
     public static void main (final String[] args) {
@@ -51,6 +52,10 @@ public class JLinkStoreRun {
 
     }
 
+    /**
+     * Comprueba si el sistema es linux.
+     * @return True si esta en linux.
+     */
     private static Boolean estaEnLinux () {
         final String so = System.getProperty("os.name");
         _logger.info("# Programa corriendo sobre: {}", so);
