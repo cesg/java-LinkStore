@@ -9,7 +9,7 @@ import javax.swing.UIManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
+import de.javasoft.plaf.synthetica.SyntheticaSimple2DLookAndFeel;
 
 /**
  * @author kristian
@@ -32,7 +32,7 @@ public class JLinkStoreRun {
         final SimpleUIHanler uiHandler = new SimpleUIHanler();
         
         try {
-            final LookAndFeel laf = new AcrylLookAndFeel();
+            final LookAndFeel laf = new SyntheticaSimple2DLookAndFeel();
             
             if (laf.isSupportedLookAndFeel())
                 UIManager.setLookAndFeel(laf);

@@ -21,6 +21,20 @@
 			<scope>system</scope>
 			<systemPath>${basedir}/lib/JTattoo.jar</systemPath>
 		</dependency>
+				<dependency>
+			<groupId>com.synthetica</groupId>
+			<artifactId>synthetica</artifactId>
+			<version>1.5.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/synthetica.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>com.synthetica</groupId>
+			<artifactId>synthetica2d</artifactId>
+			<version>1.5.0</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/syntheticaSimple2D.jar</systemPath>
+</dependency>
     <dependency>
     	<groupId>org.mybatis</groupId>
     	<artifactId>mybatis</artifactId>
@@ -35,6 +49,16 @@
     	<groupId>org.hsqldb</groupId>
     	<artifactId>hsqldb</artifactId>
     	<version>2.2.8</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.seaglasslookandfeel</groupId>
+    	<artifactId>seaglasslookandfeel</artifactId>
+    	<version>0.1.7.3</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.swinglabs.swingx</groupId>
+    	<artifactId>swingx-plaf</artifactId>
+    	<version>1.6.3</version>
     </dependency>
   </dependencies>
 </project>
