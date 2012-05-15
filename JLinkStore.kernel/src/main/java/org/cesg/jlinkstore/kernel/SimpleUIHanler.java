@@ -22,31 +22,35 @@ import org.slf4j.LoggerFactory;
  */
 public class SimpleUIHanler implements UIHandler {
 
-    private final LinkManager linkManager = new StaticLinkManager();
+    private final LinkManager linkManager;
     private static final Logger _logger = LoggerFactory
             .getLogger(SimpleUIHanler.class);
+
+    public SimpleUIHanler () {
+        this.linkManager = new StaticLinkManager();
+    }
 
     public void doIr ( final String url) {
         try {
             Desktop.getDesktop().browse(new java.net.URI(url));
-        } catch ( IOException |  URISyntaxException ex) {
+        } catch ( IOException | URISyntaxException ex ) {
             _logger.error("# Erro al iniciar el navegador.", ex);
         }
     }
 
     public void doAgregar ( final Link link) {
-      linkManager.insertLink(link);
-        
+        linkManager.insertLink(link);
+
     }
 
     public void doBorrarLink ( final Link link) {
-       linkManager.deleteLink(link);
-        
+        linkManager.deleteLink(link);
+
     }
 
     public void doBorrarLink ( final Integer id) {
         linkManager.deleteLinkById(id);
-        
+
     }
 
     public void doShowAddLink () {
@@ -54,13 +58,12 @@ public class SimpleUIHanler implements UIHandler {
     }
 
     public void doCerrarConexiones () {
-       linkManager.closeSession();
-        
+        linkManager.closeSession();
+
     }
 
     public List<Link> doSelectAllLink () {
         return linkManager.selectAllLink();
     }
-
 
 }

@@ -6,6 +6,7 @@ package org.cesg.jlinkstore.kernel;
 import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
 
+import org.cesg.jlinkstore.ui.UIHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,7 +30,7 @@ public class JLinkStoreRun {
      */
     public static void main (final String[] args) {
 
-        final SimpleUIHanler uiHandler = new SimpleUIHanler();
+        final UIHandler uiHandler = new SimpleUIHanler();
         
         try {
             final LookAndFeel laf = new SyntheticaSimple2DLookAndFeel();
