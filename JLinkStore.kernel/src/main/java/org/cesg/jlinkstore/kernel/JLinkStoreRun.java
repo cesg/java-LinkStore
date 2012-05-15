@@ -3,8 +3,8 @@
  */
 package org.cesg.jlinkstore.kernel;
 
+import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,22 +30,18 @@ public class JLinkStoreRun {
     public static void main (final String[] args) {
 
         final SimpleUIHanler uiHandler = new SimpleUIHanler();
+        
         try {
-            final AcrylLookAndFeel acrylLookAndFeel = new AcrylLookAndFeel();
-            if ( acrylLookAndFeel.isSupportedLookAndFeel() )
-                UIManager.setLookAndFeel(acrylLookAndFeel);
+            final LookAndFeel laf = new AcrylLookAndFeel();
+            
+            if (laf.isSupportedLookAndFeel())
+                UIManager.setLookAndFeel(laf);
             else if ( estaEnLinux() )
                 UIManager.setLookAndFeel(GTK_LAF);
             else
                 UIManager.setLookAndFeel(WIN_LAF);
-        } catch ( final ClassNotFoundException e ) {
-            _logger.error("# LookAndFeel no encontrada.", e);
-        } catch ( final InstantiationException e ) {
-            _logger.error("# LookAndFeel no se puede iniciar una instancia.", e);
-        } catch ( final IllegalAccessException e ) {
-            _logger.error("# LookAndFeel no se puede acceder.", e);
-        } catch ( final UnsupportedLookAndFeelException e ) {
-            _logger.error("# LookAndFeel no soportada.", e);
+        } catch ( final Exception e ) {
+            _logger.error("# Imposible establecer el LookAndFeel.", e);
         } finally {
             new Thread(new org.cesg.jlinkstore.ui.MainUI(uiHandler)).start();
         }
