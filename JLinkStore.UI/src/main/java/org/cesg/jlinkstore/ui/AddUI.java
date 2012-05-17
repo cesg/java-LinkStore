@@ -1,5 +1,6 @@
 package org.cesg.jlinkstore.ui;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -15,7 +16,6 @@ import org.cesg.jlinkstore.ui.models.Link;
 import org.cesg.jlinkstore.ui.utils.UiUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.awt.Toolkit;
 
 public class AddUI implements Runnable , ActionListener {
     private static final Logger _logger = LoggerFactory.getLogger(AddUI.class);
@@ -44,7 +44,8 @@ public class AddUI implements Runnable , ActionListener {
     private void initialize () {
         _logger.debug("# Iniciando los componentes.");
         this.frmLinksShared = new JFrame();
-        this.frmLinksShared.setIconImage(Toolkit.getDefaultToolkit().getImage(AddUI.class.getResource("/org/cesg/jsharelinks/ui/icono.png")));
+        this.frmLinksShared.setIconImage(Toolkit.getDefaultToolkit().getImage(
+                AddUI.class.getResource("/org/cesg/jlinkstore/ui/icono.png")));
         this.frmLinksShared.setResizable(false);
         this.frmLinksShared.setTitle("ADD LINK");
         this.frmLinksShared.setBounds(100, 100, 450, 286);
