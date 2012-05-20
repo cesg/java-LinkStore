@@ -63,7 +63,6 @@ public final class PortaPapeles implements ClipboardOwner {
         Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, this);
     }
 
-    @Override
     public void lostOwnership ( Clipboard arg0 , Transferable arg1) {
         // TODO Auto-generated method stub
 
