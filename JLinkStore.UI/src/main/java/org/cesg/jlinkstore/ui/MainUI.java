@@ -1,9 +1,11 @@
 package org.cesg.jlinkstore.ui;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.List;
 
@@ -18,12 +20,11 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import org.cesg.jlinkstore.ui.models.Link;
-import org.cesg.jlinkstore.ui.utils.UiUtils;
+import org.cesg.jlinkstore.ui.utils.PortaPapeles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.awt.event.WindowEvent;
-import java.awt.Toolkit;
 
+import static org.cesg.jlinkstore.ui.utils.PortaPapeles.CADENA_VACIA;
 /**
  * UI principal para el manejo de los links.<br>
  * Windows Builder
@@ -33,7 +34,7 @@ import java.awt.Toolkit;
  */
 public class MainUI implements ActionListener , Runnable , MouseListener ,
         ListSelectionListener {
-
+    private final static PortaPapeles clipboard = new PortaPapeles();
     private final static Logger _logger = LoggerFactory.getLogger(MainUI.class);
     private final UIHandler handler;
     private final DefaultListModel<Link> listModel;
@@ -46,6 +47,7 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
     private JTextArea txtrUrl;
     private JScrollPane scrollPane;
     private JButton btnRecargar;
+    private JButton btnCopiar;
 
     /**
      * Create the application.
@@ -109,7 +111,7 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
         // ${btnIr}
         this.btnIr = new JButton("IR");
         this.btnIr.addActionListener(this);
-        this.btnIr.setBounds(524, 314, 87, 25);
+        this.btnIr.setBounds(524, 151, 87, 25);
         this.frmSharedLinks.getContentPane().add(this.btnIr);
         // ${btnBorrar}
         this.btnBorrar = new JButton("Borrar");
@@ -142,6 +144,11 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
         this.btnRecargar.addActionListener(this);
         this.btnRecargar.setBounds(32, 270, 117, 27);
         this.frmSharedLinks.getContentPane().add(this.btnRecargar);
+        // NOMBRE_COMPONENTE
+        this.btnCopiar = new JButton("Copiar");
+        this.btnCopiar.addActionListener(this);
+        this.btnCopiar.setBounds(425, 152, 89, 23);
+        this.frmSharedLinks.getContentPane().add(this.btnCopiar);
     }
 
     // EVENTOS
@@ -149,21 +156,26 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
         if ( e.getSource() == this.btnRecargar ) {
             llenarLista();
         }
-        if ( e.getSource() == this.btnBorrar ) {
+        else if ( e.getSource() == this.btnBorrar ) {
             if ( list.getModel().getSize() > 0 ) {
                 handler.doBorrarLink(list.getSelectedValue().getId());
-                this.txtrUrl.setText(UiUtils.CADENA_VACIA);
+                this.txtrUrl.setText(CADENA_VACIA);
                 llenarLista();
 
             }
         }
-        if ( e.getSource() == this.btnAgregar ) {
+        else if ( e.getSource() == this.btnAgregar ) {
             handler.doShowAddLink();
         }
-        if ( e.getSource() == this.btnIr ) {
+        else if ( e.getSource() == this.btnIr ) {
             if ( list.getModel().getSize() > 0 ) {
                 handler.doIr(list.getSelectedValue().getUrl());
                 llenarLista();
+            }
+        }
+        else if ( e.getSource() == this.btnCopiar ) {
+            if ( txtrUrl.getText().length() > 0 ) {
+                clipboard.setClipboard(txtrUrl.getText());
             }
         }
     }

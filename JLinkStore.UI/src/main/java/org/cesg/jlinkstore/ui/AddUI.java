@@ -13,12 +13,13 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import org.cesg.jlinkstore.ui.models.Link;
-import org.cesg.jlinkstore.ui.utils.UiUtils;
+import org.cesg.jlinkstore.ui.utils.PortaPapeles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class AddUI implements Runnable , ActionListener {
     private static final Logger _logger = LoggerFactory.getLogger(AddUI.class);
+    private static final PortaPapeles portapapeles = new PortaPapeles();
     private final UIHandler handler;
     private static final String CADENA_VACIA = "";
     private static final String BTN_PEGAR_TIP = "Pega la url desde el porta papeles.";
@@ -99,7 +100,7 @@ public class AddUI implements Runnable , ActionListener {
 
     public void actionPerformed ( final ActionEvent e) {
         if ( e.getSource() == this.btnPegar ) {
-            final String portaPapeles = UiUtils.tryGetTextFromClipBoard();
+            final String portaPapeles = portapapeles.getClipboard();
             if ( portaPapeles.length() > 0 )
                 this.txtrUrl.setText(portaPapeles);
         }
