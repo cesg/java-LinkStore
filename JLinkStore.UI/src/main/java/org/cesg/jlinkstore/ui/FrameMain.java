@@ -32,10 +32,11 @@ import static org.cesg.jlinkstore.ui.utils.PortaPapeles.CADENA_VACIA;
  * @author kristian
  * @version 05.04.2012
  */
-public class MainUI implements ActionListener , Runnable , MouseListener ,
+public class FrameMain implements ActionListener , Runnable , MouseListener ,
         ListSelectionListener {
+
     private final static PortaPapeles clipboard = new PortaPapeles();
-    private final static Logger _logger = LoggerFactory.getLogger(MainUI.class);
+    private final static Logger _logger = LoggerFactory.getLogger(FrameMain.class);
     private final UIHandler handler;
     private final DefaultListModel<Link> listModel;
 
@@ -53,7 +54,7 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
      * Create the application.
      */
 
-    public MainUI ( UIHandler handler) {
+    public FrameMain ( UIHandler handler) {
         this.handler = handler;
         this.listModel = new DefaultListModel<Link>();
 
@@ -77,7 +78,7 @@ public class MainUI implements ActionListener , Runnable , MouseListener ,
     private void initialize () {
         _logger.debug("# Iniciando los componentes.");
         this.frmSharedLinks = new JFrame();
-        this.frmSharedLinks.setIconImage(Toolkit.getDefaultToolkit().getImage(MainUI.class.getResource("/org/cesg/jlinkstore/ui/icono.png")));
+        this.frmSharedLinks.setIconImage(Toolkit.getDefaultToolkit().getImage(FrameMain.class.getResource("/org/cesg/jlinkstore/ui/icono.png")));
         this.frmSharedLinks.setResizable(false);
         this.frmSharedLinks.setTitle("SHARED LINKS");
         this.frmSharedLinks.setBounds(100, 100, 627, 391);

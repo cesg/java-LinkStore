@@ -44,7 +44,7 @@ public class JLinkStoreRun {
         } catch ( final Exception e ) {
             _logger.error("# Imposible establecer el LookAndFeel.", e);
         } finally {
-            new Thread(new org.cesg.jlinkstore.ui.MainUI(uiHandler)).start();
+            new Thread(new org.cesg.jlinkstore.ui.FrameMain(uiHandler)).start();
         }
 
     }

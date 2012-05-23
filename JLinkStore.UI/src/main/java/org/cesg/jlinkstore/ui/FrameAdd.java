@@ -17,8 +17,9 @@ import org.cesg.jlinkstore.ui.utils.PortaPapeles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AddUI implements Runnable , ActionListener {
-    private static final Logger _logger = LoggerFactory.getLogger(AddUI.class);
+public class FrameAdd implements Runnable , ActionListener {
+
+    private static final Logger _logger = LoggerFactory.getLogger(FrameAdd.class);
     private static final PortaPapeles portapapeles = new PortaPapeles();
     private final UIHandler handler;
     private static final String CADENA_VACIA = "";
@@ -35,7 +36,7 @@ public class AddUI implements Runnable , ActionListener {
     /**
      * Create the application.
      */
-    public AddUI ( UIHandler handler) {
+    public FrameAdd ( UIHandler handler) {
         this.handler = handler;
     }
 
@@ -46,7 +47,7 @@ public class AddUI implements Runnable , ActionListener {
         _logger.debug("# Iniciando los componentes.");
         this.frmLinksShared = new JFrame();
         this.frmLinksShared.setIconImage(Toolkit.getDefaultToolkit().getImage(
-                AddUI.class.getResource("/org/cesg/jlinkstore/ui/icono.png")));
+                FrameAdd.class.getResource("/org/cesg/jlinkstore/ui/icono.png")));
         this.frmLinksShared.setResizable(false);
         this.frmLinksShared.setTitle("ADD LINK");
         this.frmLinksShared.setBounds(100, 100, 450, 286);
