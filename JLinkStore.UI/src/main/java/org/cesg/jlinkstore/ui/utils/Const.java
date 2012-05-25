@@ -19,6 +19,11 @@ public final class Const {
     public Const () {
     }
 
+    /**
+     * Obtiene la imagen para ser usada en los JFrame.
+     * 
+     * @return Imagen Usada como icono.
+     */
     public Image getFrameImage () {
         return new ImageIcon(getClass().getResource(IMAGE_ICON_PATH))
                 .getImage();
