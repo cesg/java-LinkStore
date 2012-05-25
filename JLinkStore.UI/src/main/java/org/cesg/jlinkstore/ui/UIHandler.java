@@ -16,7 +16,7 @@ public interface UIHandler {
      * Intenta abrir la url.
      * 
      * @param url
-     *            dirección.
+     *            direccion.
      */
     void doIr ( String url);
 
@@ -54,7 +54,9 @@ public interface UIHandler {
     void doCerrarConexiones ();
     
     /**
-     * @return
+     * Selecciona todos los Links.
+     * 
+     * @return lista de Link.
      */
     List<Link> doSelectAllLink();
 }
