@@ -1,6 +1,5 @@
 package org.cesg.jlinkstore.ui;
 
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -20,11 +19,9 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import org.cesg.jlinkstore.ui.models.Link;
-import org.cesg.jlinkstore.ui.utils.PortaPapeles;
+import org.cesg.jlinkstore.ui.utils.Const;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import static org.cesg.jlinkstore.ui.utils.PortaPapeles.CADENA_VACIA;
 /**
  * UI principal para el manejo de los links.<br>
  * Windows Builder
@@ -35,11 +32,9 @@ import static org.cesg.jlinkstore.ui.utils.PortaPapeles.CADENA_VACIA;
 public class FrameMain implements ActionListener , Runnable , MouseListener ,
         ListSelectionListener {
 
-    private final static PortaPapeles clipboard = new PortaPapeles();
     private final static Logger _logger = LoggerFactory.getLogger(FrameMain.class);
     private final UIHandler handler;
     private final DefaultListModel<Link> listModel;
-
     private JFrame frmSharedLinks;
     public JButton btnIr;
     private JButton btnBorrar;
@@ -78,7 +73,7 @@ public class FrameMain implements ActionListener , Runnable , MouseListener ,
     private void initialize () {
         _logger.debug("# Iniciando los componentes.");
         this.frmSharedLinks = new JFrame();
-        this.frmSharedLinks.setIconImage(Toolkit.getDefaultToolkit().getImage(FrameMain.class.getResource("/org/cesg/jlinkstore/ui/icono.png")));
+        this.frmSharedLinks.setIconImage(new Const().getFrameImage());
         this.frmSharedLinks.setResizable(false);
         this.frmSharedLinks.setTitle("SHARED LINKS");
         this.frmSharedLinks.setBounds(100, 100, 627, 391);
@@ -145,7 +140,7 @@ public class FrameMain implements ActionListener , Runnable , MouseListener ,
         this.btnRecargar.addActionListener(this);
         this.btnRecargar.setBounds(32, 270, 117, 27);
         this.frmSharedLinks.getContentPane().add(this.btnRecargar);
-        // NOMBRE_COMPONENTE
+        // btnCopiar
         this.btnCopiar = new JButton("Copiar");
         this.btnCopiar.addActionListener(this);
         this.btnCopiar.setBounds(425, 152, 89, 23);
@@ -160,7 +155,7 @@ public class FrameMain implements ActionListener , Runnable , MouseListener ,
         else if ( e.getSource() == this.btnBorrar ) {
             if ( list.getModel().getSize() > 0 ) {
                 handler.doBorrarLink(list.getSelectedValue().getId());
-                this.txtrUrl.setText(CADENA_VACIA);
+                this.txtrUrl.setText(Const.CADENA_VACIA);
                 llenarLista();
 
             }
@@ -176,7 +171,7 @@ public class FrameMain implements ActionListener , Runnable , MouseListener ,
         }
         else if ( e.getSource() == this.btnCopiar ) {
             if ( txtrUrl.getText().length() > 0 ) {
-                clipboard.setClipboard(txtrUrl.getText());
+                Const.PORTAPAPELES.setClipboard(txtrUrl.getText());
             }
         }
     }
