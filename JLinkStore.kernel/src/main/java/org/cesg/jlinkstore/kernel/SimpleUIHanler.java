@@ -59,7 +59,6 @@ public class SimpleUIHanler implements UIHandler {
 
     public void doCerrarConexiones () {
         linkManager.closeSession();
-
     }
 
     public List<Link> doSelectAllLink () {

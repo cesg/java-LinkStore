@@ -120,5 +120,4 @@ public final class DynamicLinkManager implements LinkManager {
         if ( this.session != null )
             this.session.close();
     }
-
 }
