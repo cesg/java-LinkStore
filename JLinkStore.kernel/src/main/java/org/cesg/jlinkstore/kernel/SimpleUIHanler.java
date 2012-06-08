@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.cesg.jlinkstore.kernel.services.LinkManager;
 import org.cesg.jlinkstore.kernel.services.StaticLinkManager;
-import org.cesg.jlinkstore.ui.AddUI;
+import org.cesg.jlinkstore.ui.FrameAdd;
 import org.cesg.jlinkstore.ui.UIHandler;
 import org.cesg.jlinkstore.ui.models.Link;
 import org.slf4j.Logger;
@@ -54,12 +54,11 @@ public class SimpleUIHanler implements UIHandler {
     }
 
     public void doShowAddLink () {
-        new Thread(new AddUI(this)).start();
+        new Thread(new FrameAdd(this)).start();
     }
 
     public void doCerrarConexiones () {
         linkManager.closeSession();
-
     }
 
     public List<Link> doSelectAllLink () {

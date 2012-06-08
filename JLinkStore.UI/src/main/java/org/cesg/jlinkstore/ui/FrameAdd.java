@@ -1,6 +1,5 @@
 package org.cesg.jlinkstore.ui;
 
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -13,14 +12,14 @@ import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 import org.cesg.jlinkstore.ui.models.Link;
-import org.cesg.jlinkstore.ui.utils.UiUtils;
+import org.cesg.jlinkstore.ui.utils.Const;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AddUI implements Runnable , ActionListener {
-    private static final Logger _logger = LoggerFactory.getLogger(AddUI.class);
+public class FrameAdd implements Runnable , ActionListener {
+
+    private static final Logger _logger = LoggerFactory.getLogger(FrameAdd.class);
     private final UIHandler handler;
-    private static final String CADENA_VACIA = "";
     private static final String BTN_PEGAR_TIP = "Pega la url desde el porta papeles.";
 
     private JFrame frmLinksShared;
@@ -34,7 +33,7 @@ public class AddUI implements Runnable , ActionListener {
     /**
      * Create the application.
      */
-    public AddUI ( UIHandler handler) {
+    public FrameAdd ( UIHandler handler) {
         this.handler = handler;
     }
 
@@ -44,8 +43,7 @@ public class AddUI implements Runnable , ActionListener {
     private void initialize () {
         _logger.debug("# Iniciando los componentes.");
         this.frmLinksShared = new JFrame();
-        this.frmLinksShared.setIconImage(Toolkit.getDefaultToolkit().getImage(
-                AddUI.class.getResource("/org/cesg/jlinkstore/ui/icono.png")));
+        this.frmLinksShared.setIconImage(new Const().getFrameImage());
         this.frmLinksShared.setResizable(false);
         this.frmLinksShared.setTitle("ADD LINK");
         this.frmLinksShared.setBounds(100, 100, 450, 286);
@@ -99,7 +97,7 @@ public class AddUI implements Runnable , ActionListener {
 
     public void actionPerformed ( final ActionEvent e) {
         if ( e.getSource() == this.btnPegar ) {
-            final String portaPapeles = UiUtils.tryGetTextFromClipBoard();
+            final String portaPapeles = Const.PORTAPAPELES.getClipboard();
             if ( portaPapeles.length() > 0 )
                 this.txtrUrl.setText(portaPapeles);
         }
@@ -126,8 +124,8 @@ public class AddUI implements Runnable , ActionListener {
             link = new Link();
             link.setComentario(comentario);
             link.setUrl(url);
-            txtComentario.setText(CADENA_VACIA);
-            txtrUrl.setText(CADENA_VACIA);
+            txtComentario.setText(Const.CADENA_VACIA);
+            txtrUrl.setText(Const.CADENA_VACIA);
             JOptionPane.showMessageDialog(frmLinksShared, "Link agregado.");
         }
         return link;

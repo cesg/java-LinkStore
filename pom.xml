@@ -6,10 +6,36 @@
 	<packaging>pom</packaging>
 	<version>0.0.3</version>
 	<name>JLinkStore</name>
+
+	<!-- PROPIEDADES -->
+	<properties>
+		<complianceLevel>1.7</complianceLevel>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<!-- MODULOS -->
 	<modules>
 		<module>JLinkStore.kernel</module>
 		<module>JLinkStore.UI</module>
 	</modules>
+	
+	<build>
+		<plugins>
+			<!-- Maven Compiler plugin -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>${complianceLevel}</source>
+					<target>${complianceLevel}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+	<!-- DEPENDENCIAS -->
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
