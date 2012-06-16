@@ -108,7 +108,8 @@
 					</archive>
 					<excludes>
 						<exclude>JLinkStore.properties</exclude>
-						<exclude>Run.bat</exclude>
+						<exclude>run.bat</exclude>
+						<exclude>run.sh</exclude>
 					</excludes>
 				</configuration>
 			</plugin>
@@ -137,7 +138,8 @@
 									<directory>${project.basedir}/src/main/resources</directory>
 									<includes>
 									   <include>JLinkStore.properties</include>
-									   <include>Run.bat</include>
+									   <include>run.bat</include>
+									   <include>run.sh</include>
 									</includes>
 									<filtering>true</filtering>
 								</resource>
