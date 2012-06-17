@@ -15,7 +15,7 @@
 	<properties>
 		<!-- <complianceLevel>1.7</complianceLevel> -->
 		<!-- <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
-		<install-dir>${project.build.directory}/build</install-dir>
+		<install-dir>${project.basedir}/build</install-dir>
 	</properties>
 
 	<!-- repositorio local -->
@@ -148,6 +148,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			
 			<!-- maven-dependency-plugin -->
 			<plugin>
 				<artifactId>maven-dependency-plugin</artifactId>
