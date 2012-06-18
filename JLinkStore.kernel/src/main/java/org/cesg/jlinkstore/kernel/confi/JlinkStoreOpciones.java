@@ -46,7 +46,7 @@ public class JlinkStoreOpciones extends Opciones {
         if ( valueLookAndFeel.equalsIgnoreCase(PosiblesLaf.JTATTOO.value) ) {
             posiblesLaf = PosiblesLaf.JTATTOO;
         }
-        else {
+        else if ( valueLookAndFeel.equals(PosiblesLaf.SYNTHETICA.value) ) {
             posiblesLaf = PosiblesLaf.SYNTHETICA;
         }
         return posiblesLaf;
