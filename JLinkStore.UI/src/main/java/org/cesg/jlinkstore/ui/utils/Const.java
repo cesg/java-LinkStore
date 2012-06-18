@@ -14,7 +14,7 @@ public final class Const {
      * Una instancia del PortaPapeles.
      */
     public static final PortaPapeles PORTAPAPELES = new PortaPapeles();
-    private static final String IMAGE_ICON_PATH = "icono.png";
+    private static final String IMAGE_ICON_PATH = "/img/icono.png";
 
     public Const () {
     }

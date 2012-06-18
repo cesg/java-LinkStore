@@ -1,17 +1,12 @@
-/**
- * 
- */
 package org.cesg.jlinkstore.kernel;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
+import java.net.URL;
 
 import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
 
+import org.cesg.jlinkstore.kernel.confi.JlinkStoreOpciones;
+import org.cesg.jlinkstore.kernel.confi.JlinkStoreOpciones.PosiblesLaf;
 import org.cesg.jlinkstore.ui.UIHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,10 +24,10 @@ public class JLinkStoreRun {
     private static final Logger _logger = LoggerFactory
             .getLogger(JLinkStoreRun.class);
     private static final String SO_LINUX = "Linux";
-    private static final String SYNTHETICA_LAF = "Synthetica";
-    private static final String JTATTOO_LAF = "JTatto";
     private static final String GTK_LAF = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
     private static final String WIN_LAF = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
+    private static JlinkStoreOpciones opciones;
+    private static final String fileConfName = "/JLinkStore.properties";
 
     /**
      * Main method.
@@ -41,19 +36,24 @@ public class JLinkStoreRun {
     public static void main (final String[] args) {
 
         final UIHandler uiHandler = new SimpleUIHanler();
-        Map<Opciones, String> mapOpciones = getConfiguration();
-        _logger.debug("Opcion Laf : {}", mapOpciones.get(Opciones.LAF));
-        
+        URL fileConfPath = JLinkStoreRun.class.getClass().getResource(
+                fileConfName);
+        opciones = new JlinkStoreOpciones(fileConfPath.getPath());
+
         LookAndFeel laf = null;
-        
+        PosiblesLaf opcionLaf = opciones.getOpcionLookAndFeel();
         try {
 
-            if ( SYNTHETICA_LAF.equalsIgnoreCase(mapOpciones.get(Opciones.LAF)) ) {
+            switch (opcionLaf) {
+            case DEFECTO:
+                break;
+            case SYNTHETICA:
                 laf = new SyntheticaSimple2DLookAndFeel();
-            }
-            else if ( JTATTOO_LAF.equalsIgnoreCase(mapOpciones
-                    .get(Opciones.LAF)) ) {
+                break;
+            case JTATTOO:
                 laf = new AcrylLookAndFeel();
+            default:
+                break;
             }
             
             if ( laf != null && laf.isSupportedLookAndFeel() )
@@ -80,21 +80,4 @@ public class JLinkStoreRun {
         return SO_LINUX.equalsIgnoreCase(so);
     }
 
-    private static Map<Opciones, String> getConfiguration () {
-        Properties propiedades = new Properties();
-        Map<Opciones, String> mapOpciones = new HashMap<>();
-        try {
-            propiedades.load(new FileInputStream("JLinkStore.properties"));
-            mapOpciones.put(Opciones.LAF, propiedades.get("LAF").toString());
-        }
-        catch ( IOException e ) {
-            _logger.error("# Error al leer el archivo de configuracion: {}",
-                    e.getMessage());
-        }
-        return mapOpciones;
-    }
-
-    public enum Opciones {
-        LAF
-    }
 }

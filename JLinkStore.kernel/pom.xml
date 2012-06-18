@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>jLinkStore</artifactId>
 		<groupId>org.cesg</groupId>
-		<version>0.0.3</version>
+		<version>0.0.4</version>
 	</parent>
 	<artifactId>JLinkStore.kernel</artifactId>
 	<name>JLinkStore.kernel</name>
@@ -187,7 +187,7 @@
 		<dependency>
 			<groupId>org.cesg</groupId>
 			<artifactId>JLinkStore.UI</artifactId>
-			<version>0.0.3</version>
+			<version>0.0.4</version>
 		</dependency>
 		<dependency>
 			<groupId>org.jtattoo</groupId>
