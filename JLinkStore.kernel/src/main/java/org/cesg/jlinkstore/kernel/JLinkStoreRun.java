@@ -38,10 +38,16 @@ public class JLinkStoreRun {
         final UIHandler uiHandler = new SimpleUIHanler();
         URL fileConfPath = JLinkStoreRun.class.getClass().getResource(
                 fileConfName);
-        opciones = new JlinkStoreOpciones(fileConfPath.getPath());
+
+        if ( fileConfPath != null )
+            opciones = new JlinkStoreOpciones(fileConfPath.getPath());
 
         LookAndFeel laf = null;
-        PosiblesLaf opcionLaf = opciones.getOpcionLookAndFeel();
+        PosiblesLaf opcionLaf = PosiblesLaf.DEFECTO;
+
+        if ( opciones != null )
+            opcionLaf = opciones.getOpcionLookAndFeel();
+
         try {
 
             switch (opcionLaf) {
