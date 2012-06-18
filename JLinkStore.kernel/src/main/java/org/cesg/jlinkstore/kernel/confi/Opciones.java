@@ -20,7 +20,6 @@ public class Opciones {
 
     private File archivoConfig;
     private Properties propiedades;
-    private static final String COMENTARIO_CABEZA = "Last edit:";
 
     public Opciones ( File archivoConfig) {
         this.archivoConfig = archivoConfig;
@@ -35,7 +34,7 @@ public class Opciones {
     public void leerOpciones () throws OpcionesException {
 
         if ( !archivoConfig.exists() )
-            throw new OpcionesException("El archivo no existe :", archivoConfig);
+            throw new OpcionesException("El archivo no existe", archivoConfig);
 
         propiedades = new Properties();
         InputStream fileStream;
@@ -45,7 +44,7 @@ public class Opciones {
             fileStream.close();
         }
         catch ( final IOException excetion ) {
-            throw new OpcionesException(excetion.getMessage());
+            throw new OpcionesException("Error al leer las opciones.", excetion);
         }
     }
 
@@ -58,16 +57,17 @@ public class Opciones {
     protected void guardar () throws OpcionesException {
 
         if ( !archivoConfig.exists() )
-            throw new OpcionesException("El archivo no existe :", archivoConfig);
+            throw new OpcionesException("El archivo no existe", archivoConfig);
 
         FileOutputStream fileOut;
         try {
             fileOut = new FileOutputStream(archivoConfig, false);
-            propiedades.store(fileOut, COMENTARIO_CABEZA);
+            propiedades.store(fileOut, null);
             fileOut.close();
         }
         catch ( final IOException excetion ) {
-            throw new OpcionesException(excetion.getMessage());
+            throw new OpcionesException("Error al guardar la configuracion.",
+                    excetion);
         }
 
     }

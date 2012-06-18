@@ -1,5 +1,6 @@
 package org.cesg.jlinkstore.kernel.confi;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -22,9 +23,12 @@ public class OpcionesException extends IOException {
         this.mensaje = mensaje;
     }
 
-    public OpcionesException ( String mensaje , java.io.File archivo) {
-        super(mensaje.concat(archivo.getAbsolutePath()));
-        this.mensaje = getMessage();
+    public OpcionesException ( String mensaje , Exception exception) {
+        this(mensaje.concat(" :").concat(exception.getMessage()));
+    }
+
+    public OpcionesException ( String mensaje , File archivo) {
+        this(mensaje.concat(": ").concat(archivo.getAbsolutePath()));
     }
     public String getMensaje () {
         return mensaje;
