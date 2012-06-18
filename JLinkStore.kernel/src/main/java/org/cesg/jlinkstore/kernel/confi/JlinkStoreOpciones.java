@@ -41,6 +41,12 @@ public class JlinkStoreOpciones extends Opciones {
         valueLookAndFeel = leerPropiedad(keyLookAndFeel);
     }
 
+    /**
+     * Obtiene el lookAndFeel obtenido del archivo de configuracion, de no tener
+     * acceso al archivo retorna el caso "DEFECTO".
+     * 
+     * @return {@link PosiblesLaf PosiblesLaf} con la opcion.
+     */
     public PosiblesLaf getOpcionLookAndFeel () {
         PosiblesLaf posiblesLaf = PosiblesLaf.DEFECTO;
         if ( valueLookAndFeel.equalsIgnoreCase(PosiblesLaf.JTATTOO.value) ) {
@@ -52,13 +58,19 @@ public class JlinkStoreOpciones extends Opciones {
         return posiblesLaf;
     }
 
+    /**
+     * Establece el lookAndFeel de la aplicacion.
+     * 
+     * @param lookAndFeel
+     *            nuevo valor para el lookAndFeel
+     */
     public void setOpcionLookAndFeel ( PosiblesLaf lookAndFeel) {
         try {
             actualiza(keyLookAndFeel, lookAndFeel.value);
             valueLookAndFeel = lookAndFeel.value;
         }
         catch ( OpcionesException e ) {
-            logger.error("# Error al guardar la opcion. {}", e.getMensaje());
+            logger.error("# Error al guardar la opcion.", e);
         }
     }
 
@@ -66,6 +78,12 @@ public class JlinkStoreOpciones extends Opciones {
         return direccionArchivo;
     }
 
+    /**
+     * Enumeracion con los lookAndFeel soportados por la aplicacion.
+     * 
+     * @author cesg
+     * 
+     */
     public enum PosiblesLaf {
         SYNTHETICA("synthetica"), JTATTOO("jtattoo"), DEFECTO("defecto");
 
