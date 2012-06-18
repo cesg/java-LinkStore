@@ -27,7 +27,7 @@ public class JLinkStoreRun {
     private static final String GTK_LAF = "com.sun.java.swing.plaf.gtk.GTKLookAndFeel";
     private static final String WIN_LAF = "com.sun.java.swing.plaf.windows.WindowsLookAndFeel";
     private static JlinkStoreOpciones opciones;
-    private static final String fileConfName = "/JLinkStore.properties";
+    private static final String fileConfName = "JLinkStore.properties";
 
     /**
      * Main method.
@@ -36,11 +36,15 @@ public class JLinkStoreRun {
     public static void main (final String[] args) {
 
         final UIHandler uiHandler = new SimpleUIHanler();
-        URL fileConfPath = JLinkStoreRun.class.getClass().getResource(
+        URL fileConfPath = JLinkStoreRun.class.getClassLoader().getResource(
                 fileConfName);
 
-        if ( fileConfPath != null )
-            opciones = new JlinkStoreOpciones(fileConfPath.getPath());
+        if ( fileConfPath != null ) {
+            opciones = new JlinkStoreOpciones(fileConfPath.getFile());
+        }
+        else {
+            opciones = new JlinkStoreOpciones(fileConfName);
+        }
 
         LookAndFeel laf = null;
         PosiblesLaf opcionLaf = PosiblesLaf.DEFECTO;
