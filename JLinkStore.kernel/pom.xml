@@ -15,7 +15,7 @@
 	<properties>
 		<!-- <complianceLevel>1.7</complianceLevel> -->
 		<!-- <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
-		<install-dir>${project.basedir}/build</install-dir>
+		<install-dir>${project.basedir}/build/${project.version}</install-dir>
 	</properties>
 
 	<!-- repositorio local -->
@@ -32,10 +32,75 @@
 			<url>file:${project.basedir}/repository</url>
 		</repository>
 	</repositories>
+	
+	<profiles>
+		<profile>
+			<id>build-release</id>
+			<build>
+				<plugins>
+					<!-- maven-dependency-plugin -->
+					<plugin>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<version>2.4</version>
+						<executions>
+							<execution>
+								<id>copy-dependencies</id>
+								<phase>package</phase>
+								<goals>
+									<goal>copy-dependencies</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${install-dir}/lib/</outputDirectory>
+									<overWriteReleases>false</overWriteReleases>
+									<overWriteSnapshots>false</overWriteSnapshots>
+									<overWriteIfNewer>true</overWriteIfNewer>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<!-- maven-resources-plugin -->
+					<plugin>
+						<artifactId>maven-resources-plugin</artifactId>
+						<version>2.4.3</version>
+						<executions>
+							<execution>
+								<id>copy-jar</id>
+								<phase>package</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${install-dir}</outputDirectory>
+									<resources>
+										<resource>
+											<directory>${project.build.directory}</directory>
+											<includes>
+												<include>${project.build.finalName}.jar</include>
+											</includes>
+										</resource>
+										<resource>
+											<directory>${project.basedir}/src/main/resources</directory>
+											<includes>
+												<include>JLinkStore.properties</include>
+												<include>run.bat</include>
+												<include>run.sh</include>
+											</includes>
+											<filtering>true</filtering>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 
 	<!-- COMPILADO -->
 	<build>
-	<finalName>JLinkStore</finalName>
+		<finalName>JLinkStore</finalName>
 		<pluginManagement>
 			<plugins>
 				<plugin>
@@ -113,62 +178,6 @@
 						<exclude>*.sh</exclude>
 					</excludes>
 				</configuration>
-			</plugin>
-
-			<!-- maven-resources-plugin -->
-			<plugin>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.4.3</version>
-				<executions>
-					<execution>
-						<id>copy-jar</id>
-						<phase>package</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${install-dir}</outputDirectory>
-							<resources>
-								<resource>
-									<directory>${project.build.directory}</directory>
-									<includes>
-										<include>${project.build.finalName}.jar</include>
-									</includes>
-								</resource>
-								<resource>
-									<directory>${project.basedir}/src/main/resources</directory>
-									<includes>
-										<include>JLinkStore.properties</include>
-										<include>run.bat</include>
-										<include>run.sh</include>
-									</includes>
-									<filtering>true</filtering>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
-			<!-- maven-dependency-plugin -->
-			<plugin>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<version>2.4</version>
-				<executions>
-					<execution>
-						<id>copy-dependencies</id>
-						<phase>package</phase>
-						<goals>
-							<goal>copy-dependencies</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${install-dir}/lib/</outputDirectory>
-							<overWriteReleases>false</overWriteReleases>
-							<overWriteSnapshots>false</overWriteSnapshots>
-							<overWriteIfNewer>true</overWriteIfNewer>
-						</configuration>
-					</execution>
-				</executions>
 			</plugin>
 		</plugins>
 	</build>
