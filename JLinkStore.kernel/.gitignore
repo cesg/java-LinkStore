@@ -4,3 +4,4 @@
 /target
 /database/*.lck
 /database/*.log
+/build
