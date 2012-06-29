@@ -4,7 +4,7 @@
 	<groupId>org.cesg</groupId>
 	<artifactId>jLinkStore</artifactId>
 	<packaging>pom</packaging>
-	<version>0.0.3</version>
+	<version>0.1.4-1</version>
 	<name>JLinkStore</name>
 
 	<!-- PROPIEDADES -->
@@ -43,6 +43,7 @@
 			<version>4.10</version>
 			<scope>test</scope>
 		</dependency>
+        
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>

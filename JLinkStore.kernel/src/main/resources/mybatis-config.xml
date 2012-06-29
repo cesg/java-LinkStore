@@ -25,6 +25,6 @@
 
 <!-- MAPPERS -->
 	<mappers>
-		<mapper resource="org/cesg/jlinkstore/kernel/mappers/LinkMapper.xml" />
+		<mapper resource="LinkMapper.xml" />
 	</mappers>
 </configuration>

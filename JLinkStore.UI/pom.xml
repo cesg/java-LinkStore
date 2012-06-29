@@ -6,29 +6,12 @@
 	<parent>
 		<artifactId>jLinkStore</artifactId>
 		<groupId>org.cesg</groupId>
-		<version>0.0.3</version>
+		<version>0.1.4-1</version>
 	</parent>
 	<artifactId>JLinkStore.UI</artifactId>
 	<name>JLinkStore.UI</name>
-	<url>http://maven.apache.org</url>
-	<properties>
-<!-- 		<complianceLevel>1.7</complianceLevel> -->
-<!-- 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
-	</properties>
-<!-- 	BUILD -->
-<!-- 	<build> -->
-<!-- 		<plugins> -->
-<!-- 			<plugin> -->
-<!-- 				<artifactId>maven-compiler-plugin</artifactId> -->
-<!-- 				<version>2.3.2</version> -->
-<!-- 				<configuration> -->
-<!-- 					<source>${complianceLevel}</source> -->
-<!-- 					<target>${complianceLevel}</target> -->
-<!-- 					<encoding>${project.build.sourceEncoding}</encoding> -->
-<!-- 				</configuration> -->
-<!-- 			</plugin> -->
-<!-- 		</plugins> -->
-<!-- 	</build> -->
+
+
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
