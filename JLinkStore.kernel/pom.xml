@@ -1,211 +1,211 @@
 <?xml version="1.0"?>
 <project
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<artifactId>jLinkStore</artifactId>
-		<groupId>org.cesg</groupId>
-		<version>0.1.4-1</version>
-	</parent>
-	<artifactId>JLinkStore.kernel</artifactId>
-	<name>JLinkStore.kernel</name>
-	<url>http://maven.apache.org</url>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+    xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>jLinkStore</artifactId>
+        <groupId>org.cesg</groupId>
+        <version>0.1.4-1</version>
+    </parent>
+    <artifactId>JLinkStore.kernel</artifactId>
+    <name>JLinkStore.kernel</name>
+    <url>http://maven.apache.org</url>
 
-	<properties>
-		<!-- <complianceLevel>1.7</complianceLevel> -->
-		<!-- <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
-		<install-dir>${project.basedir}/build/${project.version}</install-dir>
-	</properties>
+    <properties>
+        <!-- <complianceLevel>1.7</complianceLevel> -->
+        <!-- <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding> -->
+        <install-dir>${project.basedir}/build/${project.version}</install-dir>
+    </properties>
 
-	<!-- repositorio local -->
-	<repositories>
-		<repository>
-			<id>local-repo</id>
-			<!-- <releases> -->
-			<!-- <enabled>true</enabled> -->
-			<!-- <checksumPolicy>ignore</checksumPolicy> -->
-			<!-- </releases> -->
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-			<url>file:${project.basedir}/repository</url>
-		</repository>
-	</repositories>
+    <!-- repositorio local -->
+    <repositories>
+        <repository>
+            <id>local-repo</id>
+            <!-- <releases> -->
+            <!-- <enabled>true</enabled> -->
+            <!-- <checksumPolicy>ignore</checksumPolicy> -->
+            <!-- </releases> -->
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <url>file:${project.basedir}/repository</url>
+        </repository>
+    </repositories>
 
-	<profiles>
-		<profile>
-			<id>build-release</id>
-			<build>
-				<plugins>
-					<!-- maven-dependency-plugin -->
-					<plugin>
-						<artifactId>maven-dependency-plugin</artifactId>
-						<version>2.4</version>
-						<executions>
-							<execution>
-								<id>copy-dependencies</id>
-								<phase>package</phase>
-								<goals>
-									<goal>copy-dependencies</goal>
-								</goals>
-								<configuration>
-									<outputDirectory>${install-dir}/lib/</outputDirectory>
-									<overWriteReleases>false</overWriteReleases>
-									<overWriteSnapshots>false</overWriteSnapshots>
-									<overWriteIfNewer>true</overWriteIfNewer>
-									<includeScope>runtime</includeScope>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<!-- maven-resources-plugin -->
-					<plugin>
-						<artifactId>maven-resources-plugin</artifactId>
-						<version>2.4.3</version>
-						<executions>
-							<execution>
-								<id>copy-jar</id>
-								<phase>package</phase>
-								<goals>
-									<goal>copy-resources</goal>
-								</goals>
-								<configuration>
-									<outputDirectory>${install-dir}</outputDirectory>
-									<resources>
-										<resource>
-											<directory>${project.build.directory}</directory>
-											<includes>
-												<include>${project.build.finalName}.jar</include>
-											</includes>
-										</resource>
-										<resource>
-											<directory>${project.basedir}/src/main/resources</directory>
-											<includes>
-												<include>JLinkStore.properties</include>
-												<include>run.bat</include>
-												<include>run.sh</include>
-											</includes>
-											<filtering>true</filtering>
-										</resource>
-									</resources>
-								</configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
+    <profiles>
+        <profile>
+            <id>build-release</id>
+            <build>
+                <plugins>
+                    <!-- maven-dependency-plugin -->
+                    <plugin>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>2.4</version>
+                        <executions>
+                            <execution>
+                                <id>copy-dependencies</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>copy-dependencies</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${install-dir}/lib/</outputDirectory>
+                                    <overWriteReleases>false</overWriteReleases>
+                                    <overWriteSnapshots>false</overWriteSnapshots>
+                                    <overWriteIfNewer>true</overWriteIfNewer>
+                                    <includeScope>runtime</includeScope>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <!-- maven-resources-plugin -->
+                    <plugin>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>2.4.3</version>
+                        <executions>
+                            <execution>
+                                <id>copy-jar</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${install-dir}</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>${project.build.directory}</directory>
+                                            <includes>
+                                                <include>${project.build.finalName}.jar</include>
+                                            </includes>
+                                        </resource>
+                                        <resource>
+                                            <directory>${project.basedir}/src/main/resources</directory>
+                                            <includes>
+                                                <include>JLinkStore.properties</include>
+                                                <include>run.bat</include>
+                                                <include>run.sh</include>
+                                            </includes>
+                                            <filtering>true</filtering>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 
-	<!-- COMPILADO -->
-	<build>
-		<finalName>JLinkStore</finalName>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>org.apache.maven.plugins</groupId>
-										<artifactId>maven-dependency-plugin</artifactId>
-										<versionRange>[1.0.0,)</versionRange>
-										<goals>
-											<goal>copy-dependencies</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore />
-									</action>
-								</pluginExecution>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											com.googlecode.addjars-maven-plugin
-										</groupId>
-										<artifactId>
-											addjars-maven-plugin
-										</artifactId>
-										<versionRange>
-											[1.0.3,)
-										</versionRange>
-										<goals>
-											<goal>add-jars</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
-		</pluginManagement>
-		<plugins>
+    <!-- COMPILADO -->
+    <build>
+        <finalName>JLinkStore</finalName>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.eclipse.m2e</groupId>
+                    <artifactId>lifecycle-mapping</artifactId>
+                    <version>1.0.0</version>
+                    <configuration>
+                        <lifecycleMappingMetadata>
+                            <pluginExecutions>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>org.apache.maven.plugins</groupId>
+                                        <artifactId>maven-dependency-plugin</artifactId>
+                                        <versionRange>[1.0.0,)</versionRange>
+                                        <goals>
+                                            <goal>copy-dependencies</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore />
+                                    </action>
+                                </pluginExecution>
+                                <pluginExecution>
+                                    <pluginExecutionFilter>
+                                        <groupId>
+                                            com.googlecode.addjars-maven-plugin
+                                        </groupId>
+                                        <artifactId>
+                                            addjars-maven-plugin
+                                        </artifactId>
+                                        <versionRange>
+                                            [1.0.3,)
+                                        </versionRange>
+                                        <goals>
+                                            <goal>add-jars</goal>
+                                        </goals>
+                                    </pluginExecutionFilter>
+                                    <action>
+                                        <ignore></ignore>
+                                    </action>
+                                </pluginExecution>
+                            </pluginExecutions>
+                        </lifecycleMappingMetadata>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
 
-			<!-- maven-jar-plugin -->
-			<plugin>
-				<artifactId>maven-jar-plugin</artifactId>
-				<version>2.3.2</version>
-				<configuration>
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>org.cesg.jlinkstore.kernel.JLinkStoreRun</mainClass>
-						</manifest>
-					</archive>
-					<excludes>
-						<exclude>JLinkStore.properties</exclude>
-						<exclude>*.bat</exclude>
-						<exclude>*.sh</exclude>
-					</excludes>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+            <!-- maven-jar-plugin -->
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>org.cesg.jlinkstore.kernel.JLinkStoreRun</mainClass>
+                        </manifest>
+                    </archive>
+                    <excludes>
+                        <exclude>JLinkStore.properties</exclude>
+                        <exclude>*.bat</exclude>
+                        <exclude>*.sh</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
-	<!-- DEPENDENCIAS -->
-	<dependencies>
-		<dependency>
-			<groupId>org.mybatis</groupId>
-			<artifactId>mybatis</artifactId>
-			<version>3.1.1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.hsqldb</groupId>
-			<artifactId>hsqldb</artifactId>
-			<version>2.2.8</version>
-		</dependency>
-		<dependency>
-			<groupId>org.cesg</groupId>
-			<artifactId>JLinkStore.UI</artifactId>
-			<version>0.1.4-1</version>
-		</dependency>
-		<dependency>
-			<groupId>org.jtattoo</groupId>
-			<artifactId>jtattoo</artifactId>
-			<version>1</version>
-		</dependency>
-		<dependency>
-			<groupId>de.javasoft</groupId>
-			<artifactId>synthetica</artifactId>
-			<version>1</version>
-		</dependency>
-		<dependency>
-			<groupId>de.javasoft</groupId>
-			<artifactId>syntheticaSimple2D</artifactId>
-			<version>any</version>
-		</dependency>
-	</dependencies>
+    <!-- DEPENDENCIAS -->
+    <dependencies>
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
+            <version>3.1.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.2.8</version>
+        </dependency>
+        <dependency>
+            <groupId>org.cesg</groupId>
+            <artifactId>JLinkStore.UI</artifactId>
+            <version>0.1.4-1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jtattoo</groupId>
+            <artifactId>jtattoo</artifactId>
+            <version>1</version>
+        </dependency>
+        <dependency>
+            <groupId>de.javasoft</groupId>
+            <artifactId>synthetica</artifactId>
+            <version>1</version>
+        </dependency>
+        <dependency>
+            <groupId>de.javasoft</groupId>
+            <artifactId>syntheticaSimple2D</artifactId>
+            <version>any</version>
+        </dependency>
+    </dependencies>
 
 
 </project>
