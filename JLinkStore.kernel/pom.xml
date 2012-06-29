@@ -35,7 +35,7 @@
             <id>build-release</id>
             <build>
                 <plugins>
-                
+
                     <!-- maven-dependency-plugin -->
                     <plugin>
                         <artifactId>maven-dependency-plugin</artifactId>
@@ -47,16 +47,17 @@
                                 <goals>
                                     <goal>copy-dependencies</goal>
                                 </goals>
+                                <configuration>
+                                    <outputDirectory>${install-dir}/lib/</outputDirectory>
+                                    <overWriteReleases>false</overWriteReleases>
+                                    <overWriteSnapshots>false</overWriteSnapshots>
+                                    <overWriteIfNewer>true</overWriteIfNewer>
+                                    <includeScope>runtime</includeScope>
+                                </configuration>
                             </execution>
                         </executions>
 
-                        <configuration>
-                            <outputDirectory>${install-dir}/lib/</outputDirectory>
-                            <overWriteReleases>false</overWriteReleases>
-                            <overWriteSnapshots>false</overWriteSnapshots>
-                            <overWriteIfNewer>true</overWriteIfNewer>
-                            <includeScope>runtime</includeScope>
-                        </configuration>
+
                     </plugin>
 
                     <!-- maven-resources-plugin -->
@@ -70,29 +71,29 @@
                                 <goals>
                                     <goal>copy-resources</goal>
                                 </goals>
+
+                                <configuration>
+                                    <outputDirectory>${install-dir}</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>${project.build.directory}</directory>
+                                            <includes>
+                                                <include>${project.build.finalName}.jar</include>
+                                            </includes>
+                                        </resource>
+                                        <resource>
+                                            <directory>${project.basedir}/src/main/resources</directory>
+                                            <includes>
+                                                <include>JLinkStore.properties</include>
+                                                <include>run.bat</include>
+                                                <include>run.sh</include>
+                                            </includes>
+                                            <filtering>true</filtering>
+                                        </resource>
+                                    </resources>
+                                </configuration>
                             </execution>
                         </executions>
-
-                        <configuration>
-                            <outputDirectory>${install-dir}</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>${project.build.directory}</directory>
-                                    <includes>
-                                        <include>${project.build.finalName}.jar</include>
-                                    </includes>
-                                </resource>
-                                <resource>
-                                    <directory>${project.basedir}/src/main/resources</directory>
-                                    <includes>
-                                        <include>JLinkStore.properties</include>
-                                        <include>run.bat</include>
-                                        <include>run.sh</include>
-                                    </includes>
-                                    <filtering>true</filtering>
-                                </resource>
-                            </resources>
-                        </configuration>
                     </plugin>
                 </plugins>
             </build>
@@ -117,7 +118,7 @@
                             <mainClass>org.cesg.jlinkstore.kernel.JLinkStoreRun</mainClass>
                         </manifest>
                     </archive>
-                    
+
                     <excludes>
                         <exclude>JLinkStore.properties</exclude>
                         <exclude>*.bat</exclude>
@@ -135,31 +136,31 @@
             <artifactId>mybatis</artifactId>
             <version>3.1.1</version>
         </dependency>
-        
+
         <dependency>
             <groupId>org.hsqldb</groupId>
             <artifactId>hsqldb</artifactId>
             <version>2.2.8</version>
         </dependency>
-        
+
         <dependency>
             <groupId>org.cesg</groupId>
             <artifactId>JLinkStore.UI</artifactId>
             <version>0.1.4-1</version>
         </dependency>
-        
+
         <dependency>
             <groupId>org.jtattoo</groupId>
             <artifactId>jtattoo</artifactId>
             <version>1</version>
         </dependency>
-        
+
         <dependency>
             <groupId>de.javasoft</groupId>
             <artifactId>synthetica</artifactId>
             <version>1</version>
         </dependency>
-        
+
         <dependency>
             <groupId>de.javasoft</groupId>
             <artifactId>syntheticaSimple2D</artifactId>
