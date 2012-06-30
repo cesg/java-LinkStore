@@ -5,9 +5,10 @@ import java.net.URL;
 import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
 
-import org.cesg.jlinkstore.kernel.confi.JlinkStoreOpciones;
-import org.cesg.jlinkstore.kernel.confi.JlinkStoreOpciones.PosiblesLaf;
+import org.cesg.jlinkstore.kernel.config.JlinkStoreOpciones;
+import org.cesg.jlinkstore.kernel.config.JlinkStoreOpciones.PosiblesLaf;
 import org.cesg.jlinkstore.ui.UIHandler;
+import org.cesg.utilidades.Verifica;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -39,7 +40,7 @@ public class JLinkStoreRun {
         URL fileConfPath = JLinkStoreRun.class.getClassLoader().getResource(
                 fileConfName);
 
-        if ( fileConfPath != null ) {
+        if ( Verifica.isNotNull(fileConfPath) ) {
             opciones = new JlinkStoreOpciones(fileConfPath.getFile());
         }
         else {
@@ -49,7 +50,7 @@ public class JLinkStoreRun {
         LookAndFeel laf = null;
         PosiblesLaf opcionLaf = PosiblesLaf.DEFECTO;
 
-        if ( opciones != null )
+        if ( Verifica.isNotNull(opciones) )
             opcionLaf = opciones.getOpcionLookAndFeel();
 
         try {
@@ -66,7 +67,7 @@ public class JLinkStoreRun {
                 break;
             }
             
-            if ( laf != null && laf.isSupportedLookAndFeel() )
+            if ( Verifica.isNotNull(laf) && laf.isSupportedLookAndFeel() )
                 UIManager.setLookAndFeel(laf);
             else if ( estaEnLinux() )
                 UIManager.setLookAndFeel(GTK_LAF);

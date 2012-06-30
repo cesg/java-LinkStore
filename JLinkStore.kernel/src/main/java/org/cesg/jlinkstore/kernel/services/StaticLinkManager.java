@@ -1,5 +1,8 @@
 package org.cesg.jlinkstore.kernel.services;
 
+import static org.cesg.utilidades.Verifica.isNotNull;
+import static org.cesg.utilidades.Verifica.isNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +17,7 @@ import org.slf4j.LoggerFactory;
 public final class StaticLinkManager implements LinkManager {
 
     private SqlSession session;
-    private static final Logger _logger = LoggerFactory
+    private static final Logger LOGGER = LoggerFactory
             .getLogger(StaticLinkManager.class);
     private LinkMapper mapper;
 
@@ -25,7 +28,7 @@ public final class StaticLinkManager implements LinkManager {
     public StaticLinkManager () {
         final SqlSessionFactory sqlSessionFactory = ConnectioFactory
                 .getSession();
-        if ( sqlSessionFactory != null ) {
+        if ( isNotNull(sqlSessionFactory) ) {
             this.session = sqlSessionFactory.openSession();
             this.mapper = this.session.getMapper(LinkMapper.class);
         }
@@ -49,13 +52,13 @@ public final class StaticLinkManager implements LinkManager {
     public Link selectLink ( Integer id) {
 
         Link link = null;
-        if ( id == null )
+        if ( isNull(id) )
             return link;
 
         try {
             link = mapper.selectLinkById(id);
         } catch ( final Exception e ) {
-            _logger.error("# Error al intentar seleccionar un Link. {}",
+            LOGGER.error("# Error al intentar seleccionar un Link. {}",
                     e.getMessage());
         }
         return link;
@@ -67,21 +70,21 @@ public final class StaticLinkManager implements LinkManager {
         try {
             allLinks = mapper.selectAllLink();
         } catch ( final Exception e ) {
-            _logger.error("# Error al seleccionar todas las filas.", e);
+            LOGGER.error("# Error al seleccionar todas las filas.", e);
         }
         return allLinks;
     }
 
     public Integer insertLink ( Link link) {
         Integer filasAfectadas = null;
-        if ( link == null )
+        if ( isNull(link) )
             return filasAfectadas;
 
         try {
             filasAfectadas = mapper.insertLink(link);
             this.session.commit();
         } catch ( final Exception e ) {
-            _logger.error("# Error al insertar el Link.", e);
+            LOGGER.error("# Error al insertar el Link.", e);
         }
         return filasAfectadas;
     }
@@ -89,14 +92,14 @@ public final class StaticLinkManager implements LinkManager {
     public Integer deleteLink ( Link link) {
 
         Integer filasAfectadas = null;
-        if ( link == null )
+        if ( isNull(link) )
             return filasAfectadas;
 
         try {
             filasAfectadas = mapper.deleteLink(link);
             this.session.commit();
         } catch ( final Exception e ) {
-            _logger.error("# Error al eliminar el link.", e);
+            LOGGER.error("# Error al eliminar el link.", e);
         }
         return filasAfectadas;
     }
@@ -104,14 +107,14 @@ public final class StaticLinkManager implements LinkManager {
     public Integer deleteLinkById ( Integer id) {
 
         Integer filasAfectadas = null;
-        if ( id == null )
+        if ( isNull(id) )
             return filasAfectadas;
 
         try {
             filasAfectadas = mapper.deleteLinkById(id);
             this.session.commit();
         } catch ( final Exception e ) {
-            _logger.error("# Error al eliminar el link.", e);
+            LOGGER.error("# Error al eliminar el link.", e);
         }
         return filasAfectadas;
     }

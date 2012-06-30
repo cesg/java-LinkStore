@@ -1,7 +1,9 @@
-package org.cesg.jlinkstore.kernel.confi;
+package org.cesg.jlinkstore.kernel.config;
 
 import java.io.File;
 
+import org.cesg.utilidades.opciones.Opciones;
+import org.cesg.utilidades.opciones.OpcionesException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

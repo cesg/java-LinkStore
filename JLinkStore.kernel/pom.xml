@@ -166,6 +166,12 @@
             <artifactId>syntheticaSimple2D</artifactId>
             <version>any</version>
         </dependency>
+        
+        <dependency>
+            <groupId>org.cesg</groupId>
+            <artifactId>Utilidades</artifactId>
+            <version>0.1.4</version>
+        </dependency>
     </dependencies>
 
 

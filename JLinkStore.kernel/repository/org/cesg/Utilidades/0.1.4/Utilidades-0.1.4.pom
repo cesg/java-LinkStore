@@ -1,0 +1,152 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>org.cesg</groupId>
+	<artifactId>Utilidades</artifactId>
+	<version>0.1.4</version>
+	<packaging>jar</packaging>
+
+	<name>Utilidades</name>
+	<url>https://github.com/cesg/java-utilidades</url>
+
+	<properties>
+		<complianceLevel>1.7</complianceLevel>
+		<install-dir>${project.basedir}/build/${project.version}</install-dir>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<profiles>
+		<profile>
+			<id>build-release</id>
+			<build>
+
+				<resources>
+					<resource>
+						<directory>${basedir}/src/main/resources</directory>
+					</resource>
+					<!-- agrega las fuentes al .jar (.java) -->
+					<!-- <resource> -->
+					<!-- <directory>${basedir}/src/main/java</directory> -->
+					<!-- </resource> -->
+				</resources>
+
+
+				<plugins>
+				<!--maven-source-plugin -->
+                    <plugin>
+                        <artifactId>maven-source-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-souces</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    
+                    <!--maven-javadoc-plugin -->
+                    <plugin>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>attach-javadoc</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    
+					<!-- maven-resources-plugin -->
+					<plugin>
+						<artifactId>maven-resources-plugin</artifactId>
+						<version>2.4.3</version>
+						<executions>
+							<execution>
+								<id>copy-resources</id>
+								<phase>package</phase>
+								<goals>
+									<goal>copy-resources</goal>
+								</goals>
+								<configuration>
+									<outputDirectory>${install-dir}</outputDirectory>
+									<resources>
+										<resource>
+											<directory>${project.build.directory}</directory>
+											<includes>
+												<include>${project.build.finalName}.jar</include>
+												<include>${project.build.finalName}-sources.jar</include>
+												<include>${project.build.finalName}-javadoc.jar</include>
+											</includes>
+										</resource>
+										<resource>
+											<directory>${project.build.directory}/classes</directory>
+											<filtering>true</filtering>
+											<includes>
+												<include>README.txt</include>
+											</includes>
+										</resource>
+									</resources>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+					
+					<!-- maven-assembly-plugin -->
+					<plugin>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>assembly-project</id>
+								<phase>package</phase>
+								<goals>
+									<goal>single</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<outputDirectory>${install-dir}</outputDirectory>
+							<descriptor>src/assemblies/zip-full.xml</descriptor>
+						</configuration>
+					</plugin>
+					
+					
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<build>
+		<plugins>
+			<!-- maven-compiler-plugin -->
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>${complianceLevel}</source>
+					<target>${complianceLevel}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<!-- Dependencias -->
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+	</dependencies>
+</project>
