@@ -6,7 +6,7 @@
 	<parent>
 		<artifactId>jLinkStore</artifactId>
 		<groupId>org.cesg</groupId>
-		<version>0.1.4-1</version>
+		<version>0.1.4-2</version>
 	</parent>
 	<artifactId>JLinkStore.UI</artifactId>
 	<name>JLinkStore.UI</name>
@@ -22,7 +22,7 @@
 		<dependency>
 		    <groupId>org.cesg</groupId>
 		    <artifactId>JLinkStore.Data</artifactId>
-		    <version>0.1.4-1</version>
+		    <version>${main.version}</version>
 		</dependency>
 	</dependencies>
 </project>
