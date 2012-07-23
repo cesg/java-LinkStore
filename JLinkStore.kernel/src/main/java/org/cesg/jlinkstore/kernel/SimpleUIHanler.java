@@ -33,7 +33,8 @@ public class SimpleUIHanler implements UIHandler {
     public void doIr ( final String url) {
         try {
             Desktop.getDesktop().browse(new java.net.URI(url));
-        } catch ( IOException | URISyntaxException ex ) {
+        }
+        catch ( IOException | URISyntaxException ex ) {
             _logger.error("# Erro al iniciar el navegador.", ex);
         }
     }

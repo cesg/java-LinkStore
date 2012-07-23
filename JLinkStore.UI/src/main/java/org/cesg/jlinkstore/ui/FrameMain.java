@@ -22,6 +22,7 @@ import org.cesg.jlinkstore.data.entidades.Link;
 import org.cesg.jlinkstore.ui.utils.Const;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 /**
  * UI principal para el manejo de los links.<br>
  * Windows Builder
@@ -32,7 +33,8 @@ import org.slf4j.LoggerFactory;
 public class FrameMain implements ActionListener , Runnable , MouseListener ,
         ListSelectionListener {
 
-    private final static Logger _logger = LoggerFactory.getLogger(FrameMain.class);
+    private final static Logger _logger = LoggerFactory
+            .getLogger(FrameMain.class);
     private final UIHandler handler;
     private final DefaultListModel<Link> listModel;
     private JFrame frmSharedLinks;
@@ -192,7 +194,8 @@ public class FrameMain implements ActionListener , Runnable , MouseListener ,
             initialize();
             this.frmSharedLinks.setVisible(true);
             llenarLista();
-        } catch ( final Exception e ) {
+        }
+        catch ( final Exception e ) {
             _logger.error("## ERROR al iniciar la UI.", e);
         }
 

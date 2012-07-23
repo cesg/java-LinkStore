@@ -39,8 +39,7 @@ public final class PortaPapeles implements ClipboardOwner {
         String text = CADENA_VACIA;
         try {
             if ( t != null && t.isDataFlavorSupported(DataFlavor.stringFlavor) ) {
-                text = ( String ) t
-                        .getTransferData(DataFlavor.stringFlavor);
+                text = ( String ) t.getTransferData(DataFlavor.stringFlavor);
             }
         }
         catch ( UnsupportedFlavorException e ) {
@@ -49,7 +48,7 @@ public final class PortaPapeles implements ClipboardOwner {
         catch ( IOException e ) {
             _logger.error("# Error {}", e.getMessage());
         }
-            return text;
+        return text;
 
     }
 

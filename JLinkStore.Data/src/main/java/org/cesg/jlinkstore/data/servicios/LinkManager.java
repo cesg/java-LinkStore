@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.cesg.jlinkstore.data.entidades.Link;
 
-
 /**
  * Manejador de link <br>
  * 

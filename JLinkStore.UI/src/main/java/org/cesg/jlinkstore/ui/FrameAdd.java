@@ -18,7 +18,8 @@ import org.slf4j.LoggerFactory;
 
 public class FrameAdd implements Runnable , ActionListener {
 
-    private static final Logger _logger = LoggerFactory.getLogger(FrameAdd.class);
+    private static final Logger _logger = LoggerFactory
+            .getLogger(FrameAdd.class);
     private final UIHandler handler;
     private static final String BTN_PEGAR_TIP = "Pega la url desde el porta papeles.";
 
@@ -90,7 +91,8 @@ public class FrameAdd implements Runnable , ActionListener {
             initialize();
             this.txtComentario.setFocusable(true);
             this.frmLinksShared.setVisible(true);
-        } catch ( final Exception e ) {
+        }
+        catch ( final Exception e ) {
             _logger.error("## ERROR al iniciar la UI.", e);
         }
     }

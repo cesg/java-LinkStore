@@ -52,11 +52,11 @@ public interface UIHandler {
      * Cierra todas la conexiones a la base de datos.
      */
     void doCerrarConexiones ();
-    
+
     /**
      * Selecciona todos los Links.
      * 
      * @return lista de Link.
      */
-    List<Link> doSelectAllLink();
+    List<Link> doSelectAllLink ();
 }

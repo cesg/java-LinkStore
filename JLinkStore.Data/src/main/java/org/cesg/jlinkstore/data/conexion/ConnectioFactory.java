@@ -24,7 +24,8 @@ public class ConnectioFactory {
         try {
             reader = Resources.getResourceAsReader(resource);
             sqlMapper = new SqlSessionFactoryBuilder().build(reader);
-        } catch ( final Exception e ) {
+        }
+        catch ( final Exception e ) {
             _logger.error(
                     "No se a logrado iniciar una sesion en la base de datos.",
                     e);

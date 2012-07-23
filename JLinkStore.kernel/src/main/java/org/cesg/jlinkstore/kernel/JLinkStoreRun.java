@@ -32,9 +32,10 @@ public class JLinkStoreRun {
 
     /**
      * Main method.
+     * 
      * @param args
      */
-    public static void main (final String[] args) {
+    public static void main ( final String[] args) {
 
         final UIHandler uiHandler = new SimpleUIHanler();
         URL fileConfPath = JLinkStoreRun.class.getClassLoader().getResource(
@@ -66,16 +67,18 @@ public class JLinkStoreRun {
             default:
                 break;
             }
-            
+
             if ( Verifica.isNotNull(laf) && laf.isSupportedLookAndFeel() )
                 UIManager.setLookAndFeel(laf);
             else if ( estaEnLinux() )
                 UIManager.setLookAndFeel(GTK_LAF);
             else
                 UIManager.setLookAndFeel(WIN_LAF);
-        } catch ( final Exception e ) {
+        }
+        catch ( final Exception e ) {
             _logger.error("# Imposible establecer el LookAndFeel.", e);
-        } finally {
+        }
+        finally {
             new Thread(new org.cesg.jlinkstore.ui.FrameMain(uiHandler)).start();
         }
 
@@ -83,6 +86,7 @@ public class JLinkStoreRun {
 
     /**
      * Comprueba si el sistema es linux.
+     * 
      * @return True si esta en linux.
      */
     private static Boolean estaEnLinux () {

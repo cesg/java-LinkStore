@@ -32,10 +32,12 @@ public final class DynamicLinkManager implements LinkManager {
         final LinkMapper mapper = this.session.getMapper(LinkMapper.class);
         try {
             link = mapper.selectLinkById(id);
-        } catch ( final Exception e ) {
+        }
+        catch ( final Exception e ) {
             _logger.error("# Error al intentar seleccionar un Link. {}",
                     e.getMessage());
-        } finally {
+        }
+        finally {
             closeSession();
         }
         return link;
@@ -48,9 +50,11 @@ public final class DynamicLinkManager implements LinkManager {
         final LinkMapper mapper = this.session.getMapper(LinkMapper.class);
         try {
             allLinks = mapper.selectAllLink();
-        } catch ( final Exception e ) {
+        }
+        catch ( final Exception e ) {
             _logger.error("# Error al seleccionar todas las filas.", e);
-        } finally {
+        }
+        finally {
             closeSession();
         }
         return allLinks;
@@ -67,9 +71,11 @@ public final class DynamicLinkManager implements LinkManager {
         try {
             filasAfectadas = mapper.insertLink(link);
             this.session.commit();
-        } catch ( final Exception e ) {
+        }
+        catch ( final Exception e ) {
             _logger.error("# Error al insertar el Link.", e);
-        } finally {
+        }
+        finally {
             closeSession();
         }
         return filasAfectadas;
@@ -86,9 +92,11 @@ public final class DynamicLinkManager implements LinkManager {
         try {
             filasAfectadas = mapper.deleteLink(link);
             this.session.commit();
-        } catch ( final Exception e ) {
+        }
+        catch ( final Exception e ) {
             _logger.error("# Error al eliminar el link.", e);
-        } finally {
+        }
+        finally {
             closeSession();
         }
         return filasAfectadas;
@@ -104,9 +112,11 @@ public final class DynamicLinkManager implements LinkManager {
         try {
             filasAfectadas = mapper.deleteLinkById(id);
             this.session.commit();
-        } catch ( final Exception e ) {
+        }
+        catch ( final Exception e ) {
             _logger.error("# Error al eliminar el link.", e);
-        } finally {
+        }
+        finally {
             closeSession();
         }
         return filasAfectadas;
