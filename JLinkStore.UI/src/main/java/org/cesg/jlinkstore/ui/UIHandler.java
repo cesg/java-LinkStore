@@ -2,7 +2,7 @@ package org.cesg.jlinkstore.ui;
 
 import java.util.List;
 
-import org.cesg.jlinkstore.ui.models.Link;
+import org.cesg.jlinkstore.data.entidades.Link;
 
 /**
  * Interfas para la comunicación de la UI. <br>

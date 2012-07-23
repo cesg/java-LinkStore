@@ -1,4 +1,4 @@
-package org.cesg.jlinkstore.kernel;
+package org.cesg.jlinkstore.data.conexion;
 
 import java.io.Reader;
 

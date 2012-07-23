@@ -8,11 +8,11 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.List;
 
-import org.cesg.jlinkstore.kernel.services.LinkManager;
-import org.cesg.jlinkstore.kernel.services.StaticLinkManager;
+import org.cesg.jlinkstore.data.entidades.Link;
+import org.cesg.jlinkstore.data.servicios.LinkManager;
+import org.cesg.jlinkstore.data.servicios.StaticLinkManager;
 import org.cesg.jlinkstore.ui.FrameAdd;
 import org.cesg.jlinkstore.ui.UIHandler;
-import org.cesg.jlinkstore.ui.models.Link;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

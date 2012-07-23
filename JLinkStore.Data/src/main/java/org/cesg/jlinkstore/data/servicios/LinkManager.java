@@ -1,8 +1,8 @@
-package org.cesg.jlinkstore.kernel.services;
+package org.cesg.jlinkstore.data.servicios;
 
 import java.util.List;
 
-import org.cesg.jlinkstore.ui.models.Link;
+import org.cesg.jlinkstore.data.entidades.Link;
 
 
 /**

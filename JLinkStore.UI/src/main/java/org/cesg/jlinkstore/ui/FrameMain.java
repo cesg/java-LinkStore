@@ -18,7 +18,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import org.cesg.jlinkstore.ui.models.Link;
+import org.cesg.jlinkstore.data.entidades.Link;
 import org.cesg.jlinkstore.ui.utils.Const;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

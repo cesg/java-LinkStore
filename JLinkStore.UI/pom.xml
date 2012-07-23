@@ -19,5 +19,10 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+		    <groupId>org.cesg</groupId>
+		    <artifactId>JLinkStore.Data</artifactId>
+		    <version>0.1.4-1</version>
+		</dependency>
 	</dependencies>
 </project>

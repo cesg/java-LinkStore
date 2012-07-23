@@ -1,4 +1,4 @@
-package org.cesg.jlinkstore.ui.models;
+package org.cesg.jlinkstore.data.entidades;
 
 import java.io.Serializable;
 

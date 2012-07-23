@@ -1,15 +1,15 @@
 /**
  * 
  */
-package org.cesg.jlinkstore.kernel.services;
+package org.cesg.jlinkstore.data.servicios;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
-import org.cesg.jlinkstore.kernel.ConnectioFactory;
-import org.cesg.jlinkstore.kernel.mappers.LinkMapper;
-import org.cesg.jlinkstore.ui.models.Link;
+import org.cesg.jlinkstore.data.conexion.ConnectioFactory;
+import org.cesg.jlinkstore.data.entidades.Link;
+import org.cesg.jlinkstore.data.mapeo.LinkMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

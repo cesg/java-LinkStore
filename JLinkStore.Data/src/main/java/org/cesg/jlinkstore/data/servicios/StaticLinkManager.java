@@ -1,16 +1,13 @@
-package org.cesg.jlinkstore.kernel.services;
-
-import static org.cesg.utilidades.Verifica.isNotNull;
-import static org.cesg.utilidades.Verifica.isNull;
+package org.cesg.jlinkstore.data.servicios;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.cesg.jlinkstore.kernel.ConnectioFactory;
-import org.cesg.jlinkstore.kernel.mappers.LinkMapper;
-import org.cesg.jlinkstore.ui.models.Link;
+import org.cesg.jlinkstore.data.conexion.ConnectioFactory;
+import org.cesg.jlinkstore.data.entidades.Link;
+import org.cesg.jlinkstore.data.mapeo.LinkMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -28,7 +25,7 @@ public final class StaticLinkManager implements LinkManager {
     public StaticLinkManager () {
         final SqlSessionFactory sqlSessionFactory = ConnectioFactory
                 .getSession();
-        if ( isNotNull(sqlSessionFactory) ) {
+        if ( sqlSessionFactory != null ) {
             this.session = sqlSessionFactory.openSession();
             this.mapper = this.session.getMapper(LinkMapper.class);
         }
@@ -52,7 +49,7 @@ public final class StaticLinkManager implements LinkManager {
     public Link selectLink ( Integer id) {
 
         Link link = null;
-        if ( isNull(id) )
+        if ( id == null )
             return link;
 
         try {
@@ -77,7 +74,7 @@ public final class StaticLinkManager implements LinkManager {
 
     public Integer insertLink ( Link link) {
         Integer filasAfectadas = null;
-        if ( isNull(link) )
+        if ( link == null )
             return filasAfectadas;
 
         try {
@@ -92,7 +89,7 @@ public final class StaticLinkManager implements LinkManager {
     public Integer deleteLink ( Link link) {
 
         Integer filasAfectadas = null;
-        if ( isNull(link) )
+        if ( link == null )
             return filasAfectadas;
 
         try {
@@ -107,7 +104,7 @@ public final class StaticLinkManager implements LinkManager {
     public Integer deleteLinkById ( Integer id) {
 
         Integer filasAfectadas = null;
-        if ( isNull(id) )
+        if ( id == null )
             return filasAfectadas;
 
         try {

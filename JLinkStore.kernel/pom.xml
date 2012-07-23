@@ -90,6 +90,12 @@
                                             </includes>
                                             <filtering>true</filtering>
                                         </resource>
+                                        <resource>
+                                            <directory>${project.basedir}</directory>
+                                            <includes>
+                                                <include>database/*</include>
+                                            </includes>
+                                        </resource>
                                     </resources>
                                 </configuration>
                             </execution>
@@ -171,6 +177,11 @@
             <groupId>org.cesg</groupId>
             <artifactId>Utilidades</artifactId>
             <version>0.1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.cesg</groupId>
+            <artifactId>JLinkStore.Data</artifactId>
+            <version>0.1.4-1</version>
         </dependency>
     </dependencies>
 
