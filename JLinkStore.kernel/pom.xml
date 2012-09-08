@@ -5,7 +5,7 @@
     <parent>
         <artifactId>jLinkStore</artifactId>
         <groupId>org.cesg</groupId>
-        <version>0.1.4-2</version>
+        <version>0.1.5-3</version>
     </parent>
     <artifactId>JLinkStore.kernel</artifactId>
     <name>JLinkStore.kernel</name>
@@ -128,7 +128,7 @@
                     <excludes>
                         <exclude>JLinkStore.properties</exclude>
                         <exclude>*.bat</exclude>
-                        <exclude>*.sh</exclude>
+                        <exclude>run</exclude>
                     </excludes>
                 </configuration>
             </plugin>
@@ -152,7 +152,7 @@
         <dependency>
             <groupId>org.cesg</groupId>
             <artifactId>JLinkStore.UI</artifactId>
-            <version>${main.version}</version>
+            <version>${pom.version}</version>
         </dependency>
 
         <dependency>
@@ -181,7 +181,7 @@
         <dependency>
             <groupId>org.cesg</groupId>
             <artifactId>JLinkStore.Data</artifactId>
-            <version>${main.version}</version>
+            <version>${pom.version}</version>
         </dependency>
         <dependency>
             <groupId>com.seaglasslookandfeel</groupId>
