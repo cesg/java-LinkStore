@@ -51,11 +51,12 @@ public class JlinkStoreOpciones extends Opciones {
      */
     public PosiblesLaf getOpcionLookAndFeel () {
         PosiblesLaf posiblesLaf = PosiblesLaf.DEFECTO;
-        if ( valueLookAndFeel.equalsIgnoreCase(PosiblesLaf.JTATTOO.value) ) {
-            posiblesLaf = PosiblesLaf.JTATTOO;
-        }
-        else if ( valueLookAndFeel.equals(PosiblesLaf.SYNTHETICA.value) ) {
-            posiblesLaf = PosiblesLaf.SYNTHETICA;
+
+        for ( PosiblesLaf element : PosiblesLaf.values()) {
+            if ( element.getStringValue().equalsIgnoreCase(valueLookAndFeel) ) {
+                posiblesLaf = element;
+                break;
+            }
         }
         return posiblesLaf;
     }
@@ -87,7 +88,8 @@ public class JlinkStoreOpciones extends Opciones {
      * 
      */
     public enum PosiblesLaf {
-        SYNTHETICA("synthetica"), JTATTOO("jtattoo"), DEFECTO("defecto");
+        SYNTHETICA("synthetica"), JTATTOO("jtattoo"), SEAGLASS("seaglass"), DEFECTO(
+                "defecto");
 
         private String value;
 
