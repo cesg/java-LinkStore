@@ -13,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.jtattoo.plaf.acryl.AcrylLookAndFeel;
+import com.seaglasslookandfeel.SeaGlassLookAndFeel;
 
 import de.javasoft.plaf.synthetica.SyntheticaSimple2DLookAndFeel;
 
@@ -64,6 +65,8 @@ public class JLinkStoreRun {
                 break;
             case JTATTOO:
                 laf = new AcrylLookAndFeel();
+            case SEAGLASS:
+                laf = new SeaGlassLookAndFeel();
             default:
                 break;
             }
